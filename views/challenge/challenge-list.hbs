@@ -1,0 +1,15 @@
+<h2>List of challenges</h2>
+
+<div>
+    {{#each challengesFromDB}}
+    <div>
+        <h3>{{this.title}}</h3>
+        <a href="/challenges/{{this.id}}">Have a look</a>
+        <form action="/challenges/{{this.id}}/delete" method="POST">
+            <button>Delete this challenge</button>
+        </form>
+    </div>
+    {{/each}}
+</div>
+<hr>
+<a href="/challenges/new">Create a new challenge!</a>

@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const challengeSchema = new Schema({
+    userId: {
+      type: String
+    },
     category: {
       type: String,
       enum: ['Education', 'Sports', 'Arts', 'Entertainment', 'Self-care', 'Health', 'Other'],
@@ -27,6 +30,9 @@ const challengeSchema = new Schema({
     description: {
       type: String,
       default: 'Remember to describe your challenge!'
+    },
+    milestones: {
+      type: String
     },
     progress: {
       type: Number
