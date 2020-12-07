@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const challengeSchema = new Schema({
-    userId: {
-      type: String
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
     },
     category: {
       type: String,

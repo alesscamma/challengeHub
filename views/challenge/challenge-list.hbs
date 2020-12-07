@@ -4,7 +4,7 @@
     {{#each challengesFromDB}}
     <div>
         <h3>{{this.title}}</h3>
-        <a href="/challenges/{{this.id}}">Have a look</a>
+        <a href="/challenges/{{this.id}}">Have a closer look into this challenge</a>
         <form action="/challenges/{{this.id}}/delete" method="POST">
             <button>Delete this challenge</button>
         </form>

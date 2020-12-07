@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const Challenge = require('../models/Challenge.model');
 
-router.get('/users/:userId/challenges', (req, res, next) => {
+router.get('/:userId', (req, res, next) => {
   Challenge.find(req.params.userId)
   .then(challengesFromDB => {
     res.render('challenge/challenge-list', {challengesFromDB});
@@ -12,11 +12,11 @@ router.get('/users/:userId/challenges', (req, res, next) => {
   });
 });
 
-router.get('/users/:userId/challenges/new', (req, res, next) => {
+router.get('/new', (req, res, next) => {
   res.render('challenge/create-challenge');
 });
 
-router.get('users/:userId/challenges/:challengeId', (req, res, next) => {
+router.get('/:challengeId', (req, res, next) => {
   Challenge.findById(req.params.challengeId)
   .then(challenge => {
     res.render('challenge/challenge', {challenge});
@@ -26,7 +26,7 @@ router.get('users/:userId/challenges/:challengeId', (req, res, next) => {
   });
 });
 
-router.post('/users/:userId/challenges/new', (req, res, next) => {
+router.post('/new', (req, res, next) => {
   const { category, timeNumber, timeFormat, goal } = req.body
 
   Challenge.create({ category, timeNumber, timeFormat, goal })
@@ -39,7 +39,7 @@ router.post('/users/:userId/challenges/new', (req, res, next) => {
   });
 });
 
-router.post('/users/:userId/challenges/challenges/:challengeId/delete', (req, res, next) => {
+router.post('/:challengeId/delete', (req, res, next) => {
   Challenge.findByIdAndDelete(req.params.challengeId)
   .then(() => {
       res.redirect('/');
@@ -49,7 +49,7 @@ router.post('/users/:userId/challenges/challenges/:challengeId/delete', (req, re
   });
 });
 
-router.get('/users/:userId/challenges/challenges/:challengeId/edit', (req, res, next) => {
+router.get('/:challengeId/edit', (req, res, next) => {
   Challenge.findById(req.params.challengeId)
   .then(challenge => {
       res.render('challenge/edit-challenge', {challenge});
@@ -59,7 +59,7 @@ router.get('/users/:userId/challenges/challenges/:challengeId/edit', (req, res, 
   });
 });
 
-router.post('/users/:userId/challenges/challenges/:challengeId', (req, res, next) => {
+router.post('/:challengeId', (req, res, next) => {
   Challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true})
   .then(() => {
       res.redirect('/');

@@ -37,11 +37,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.locals.title = 'Challenge App';
+
+function authNeeded (req, res, next) {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.render('auth/login', {errorMessage: 'Please login first.'});
+  }
+}
+
 const index = require('./routes/index');
 app.use('/', index);
 
 const challenge = require('./routes/challenge.routes');
-app.use('/', challenge);
+app.use('/challenges', authNeeded, challenge);
 
 const auth = require('./routes/auth.routes');
 app.use('/', auth);
