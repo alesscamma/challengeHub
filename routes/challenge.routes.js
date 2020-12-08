@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const Challenge = require('../models/Challenge.model');
 
-router.get('/:userId', (req, res, next) => {
+router.get('/', (req, res, next) => {
   Challenge.find(req.params.userId)
   .then(challengesFromDB => {
     res.render('challenge/challenge-list', {challengesFromDB});
@@ -27,15 +27,17 @@ router.get('/:challengeId', (req, res, next) => {
 });
 
 router.post('/new', (req, res, next) => {
-  const { user_id, category, timeNumber, timeFormat, goal } = req.body;
+  const { category, timeNumber, timeFormat, goal } = req.body;
+  const user = req.session.currentUser._id;
+  console.log(user);
 
-  Challenge.create({ user_id, category, timeNumber, timeFormat, goal })
+  Challenge.create({ user, category, timeNumber, timeFormat, goal })
   .then(() => {
     res.redirect('/');
   })
-  .catch(() => {
-    res.render('challenge/create-challenge');
-    alert('There was an error while creating your challenge. Try again!');
+  .catch(error => {
+    console.log(error);
+    res.render('challenge/create-challenge', {errorMessage: error});
   });
 });
 

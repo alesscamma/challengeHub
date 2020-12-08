@@ -1,24 +1,29 @@
 <h2>Create your challenge</h2>
+
+{{#if errorMessage}}
+<script>window.alert('Unsuccessful challenge creation. Try again!')</script>
+{{/if}}
+
 <form action="/challenges/new" method="POST">
     <label>
         Category:
-        <input type="checkbox" id="education" name="category">Education
-        <input type="checkbox" id="sports" name="category">Sports
-        <input type="checkbox" id="arts" name="category">Arts
-        <input type="checkbox" id="entertainment" name="category">Entertainment
-        <input type="checkbox" id="self-care" name="category">Self-care
-        <input type="checkbox" id="health" name="category">Health
-        <input type="checkbox" id="other" name="category">Other
+        <input type="checkbox" id="education" name="category" value="Education">Education
+        <input type="checkbox" id="sports" name="category" value="Sports">Sports
+        <input type="checkbox" id="arts" name="category" value="Arts">Arts
+        <input type="checkbox" id="entertainment" name="category" value="Entertainment">Entertainment
+        <input type="checkbox" id="self-care" name="category" value="Self-care">Self-care
+        <input type="checkbox" id="health" name="category" value="Health">Health
+        <input type="checkbox" id="other" name="category" value="Other">Other
     </label>
     <br>
     <label>
         Time:
         <input type="number" id="time-number" name="timeNumber">
         <br>
-        <input type="radio" id="time-days" name="timeFormat">Days
-        <input type="radio" id="time-weeks" name="timeFormat">Weeks
-        <input type="radio" id="time-months" name="timeFormat">Months
-        <input type="radio" id="time-years" name="timeFormat">Years
+        <input type="radio" id="time-days" name="timeFormat" value="Days">Days
+        <input type="radio" id="time-weeks" name="timeFormat" value="Weeks">Weeks
+        <input type="radio" id="time-months" name="timeFormat" value="Months">Months
+        <input type="radio" id="time-years" name="timeFormat" value="Years">Years
     </label>
     <br>
     <label>

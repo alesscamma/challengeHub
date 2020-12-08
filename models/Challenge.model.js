@@ -5,7 +5,6 @@ const challengeSchema = new Schema({
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
-      required: true
     },
     category: {
       type: String,
@@ -27,7 +26,6 @@ const challengeSchema = new Schema({
     },
     startDate: {
       type: Date,
-      required: true
     },
     description: {
       type: String,

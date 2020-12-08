@@ -3,7 +3,6 @@ const { Schema, model } = mongoose;
 
 const userSchema = new Schema(
   {
-    _id: Schema.Types.ObjectId,
     username: {
       type: String,
       trim: true,
