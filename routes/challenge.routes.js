@@ -27,7 +27,7 @@ router.get('/:challengeId', (req, res, next) => {
 });
 
 router.post('/new', (req, res, next) => {
-  const { category, timeNumber, timeFormat, goal } = req.body
+  const { category, timeNumber, timeFormat, goal } = req.body;
 
   Challenge.create({ category, timeNumber, timeFormat, goal })
   .then(() => {
@@ -35,7 +35,7 @@ router.post('/new', (req, res, next) => {
   })
   .catch(() => {
     res.render('challenge/create-challenge');
-    alert('There was an error while creating your challenge. Try again!')
+    alert('There was an error while creating your challenge. Try again!');
   });
 });
 
