@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 const challengeSchema = new Schema({
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User',
       required: true
     },
