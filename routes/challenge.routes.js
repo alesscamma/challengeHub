@@ -27,9 +27,9 @@ router.get('/:challengeId', (req, res, next) => {
 });
 
 router.post('/new', (req, res, next) => {
-  const { category, timeNumber, timeFormat, goal } = req.body;
+  const { user_id, category, timeNumber, timeFormat, goal } = req.body;
 
-  Challenge.create({ userId = userDocument._id, category, timeNumber, timeFormat, goal })
+  Challenge.create({ user_id, category, timeNumber, timeFormat, goal })
   .then(() => {
     res.redirect('/');
   })
