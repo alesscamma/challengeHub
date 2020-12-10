@@ -25,7 +25,8 @@ const challengeSchema = new Schema({
       required: true,
     },
     startDate: {
-      type: Date,
+      type: String,
+      required: true
     },
     description: {
       type: String,
