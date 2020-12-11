@@ -1,12 +1,14 @@
-<h2>List of challenges</h2>
 
-<div>
+
+<h2>Your list of challenges, {{userInSession.username}}</h2>
+
+<div class="challenges-containter">
     {{#each challengesFromDB}}
-    <div>
-        <h3>{{this.title}}</h3>
-        <a href="/challenges/{{this.id}}">Have a closer look into this challenge</a>
+    <div class="challenge-item">
+        <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
+        <a href="/challenges/{{this.id}}">See challenge</a>
         <form action="/challenges/{{this.id}}/delete" method="POST">
-            <button>Delete this challenge</button>
+            <button>Delete challenge</button>
         </form>
     </div>
     {{/each}}

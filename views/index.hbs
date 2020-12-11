@@ -1,3 +1,8 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Welcome to the home page of {{title}}</p>
 
+{{#if userInSession}}
+  <a href="/challenges">View my challenges</a>
+  <br>
+  <a href="/challenges/new">Create a new challenge!</a>
+{{/if}}

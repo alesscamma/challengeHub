@@ -5,9 +5,11 @@ const hbs          = require('hbs');
 
 
 router.get('/', (req, res, next) => {
+  const userInSession = req.session.currentUser;
+  console.log(userInSession);
   Challenge.find(req.params.userId)
   .then(challengesFromDB => {
-    res.render('challenge/challenge-list', {challengesFromDB});
+    res.render('challenge/challenge-list', {challengesFromDB, userInSession});
   })
   .catch(error => {
     next(error);
