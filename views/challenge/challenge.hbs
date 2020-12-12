@@ -10,20 +10,38 @@
         <p>Time left: function to count it</p>
     </div>
     <div class="challenge-about">
-        <p>Description: form needed here (post route needed too)</p>
-        <p>Motivation: form needed here (post route needed too)</p>
-        <p>Resources: form needed here (post route needed too)</p>
+        {{#if challenge.description}}
+            <p>Description: {{challenge.description}}</p>
+        {{/if}}
+        {{#if challenge.thoughts}}
+            <p>Thoughts: {{challenge.thoughts}}</p>
+        {{/if}}
+        {{#if challenge.resources}}
+            <p>Resources: {{challenge.resources}}</p>
+        {{/if}}
     </div>
     <div class="challenge-daily">
         <p>Daily progress: radio buttons Yes/No needed here (post route needed too)</p>
-        <p>Daily thoughts: form needed here (post route needed too)</p>
     </div>
     <div class="challenge-milestones">
-        <p>Milestones: form with checkbox needed</p>
+        {{#if challenge.milestones}}
+        Milestones:
+            <ol class="milestones-list">
+                {{#each challenge.milestones}}
+                    <li>{{this}}</li><input type="checkbox">
+                {{/each}}
+            </ol>
+        {{/if}}
         <p>Progress: function needed that counts %: milestones ticked/all milestones</p>
     </div>
     <div class="challenge-invite">
-        <p>Invite your friends: form with textarea needed here and figure out how to send emails with invitation to join</p>
+        <form action="/challenges/{{challenge.id}}/" method="POST">
+            <label>
+                Invite your friends:
+                <textarea type="text" name="invitation"></textarea>
+            </label>
+            <button type="submit">Invite</button>
+        </form>
     </div>
 </section>
 <a href="/challenges/{{challenge.id}}/edit">Edit this challenge</a>

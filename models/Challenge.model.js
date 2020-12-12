@@ -30,19 +30,18 @@ const challengeSchema = new Schema({
     },
     description: {
       type: String,
-      default: 'Remember to describe your challenge!'
     },
     milestones: {
-      type: String
+      type: [String]
     },
     progress: {
       type: Number
     },
     resources: {
-      type: String
+      type: String,
     },
     thoughts: {
-      type: String
+      type: String,
     },
     dailyProgress: {
       type: [Boolean]
