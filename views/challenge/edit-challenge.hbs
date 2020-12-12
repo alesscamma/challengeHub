@@ -7,13 +7,13 @@
 <form action="/challenges/{{challenge._id}}/edit" method="POST">
     <label>
         Category:
-        <input type="checkbox" id="Education" name="category" value="Education" >Education
-        <input type="checkbox" id="Sports" name="category" value="Sports" >Sports
-        <input type="checkbox" id="Arts" name="category" value="Arts" >Arts
-        <input type="checkbox" id="Entertainment" name="category" value="Entertainment" >Entertainment
-        <input type="checkbox" id="Self-care" name="category" value="Self-care" >Self-care
-        <input type="checkbox" id="Health" name="category" value="Health" >Health
-        <input type="checkbox" id="Other" name="category" value="Other" >Other
+        <input type="checkbox" id="Education" name="category" value="Education" {{setChecked category "Education"}}>Education
+        <input type="checkbox" id="Sports" name="category" value="Sports" {{setChecked category "Sports"}}>Sports
+        <input type="checkbox" id="Arts" name="category" value="Arts" {{setChecked category "Arts"}}>Arts
+        <input type="checkbox" id="Entertainment" name="category" value="Entertainment" {{setChecked category "Entertainment"}}>Entertainment
+        <input type="checkbox" id="Self-care" name="category" value="Self-care" {{setChecked category "Self-care"}}>Self-care
+        <input type="checkbox" id="Health" name="category" value="Health" {{setChecked category "Health"}}>Health
+        <input type="checkbox" id="Other" name="category" value="Other" {{setChecked category "Other"}}>Other
     </label>
 
     <br>
