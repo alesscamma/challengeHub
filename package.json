@@ -7,6 +7,9 @@
     "dev": "DEBUG=challengeapp:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www"
   },
+  "engines": {
+    "node": "v12.18.3"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
