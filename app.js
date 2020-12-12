@@ -58,4 +58,5 @@ app.use('/challenges', authNeeded, challenge);
 const auth = require('./routes/auth.routes');
 app.use('/', auth);
 
+
 module.exports = app;
