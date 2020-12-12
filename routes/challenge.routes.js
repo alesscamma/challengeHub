@@ -68,7 +68,7 @@ router.get('/:challengeId/edit', (req, res, next) => {
          return "";
       }
    });
-      res.render('challenge/edit-challenge', challenge);
+      res.render('challenge/edit-challenge', {challenge});
   })
   .catch(error => {
       next(error);
