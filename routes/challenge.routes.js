@@ -37,8 +37,8 @@ router.post('/new', (req, res, next) => {
   console.log(user);
 
   Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones })
-  .then(() => {
-    res.redirect('/challenges');
+  .then(challenge => {
+    res.render('challenge/challenge', {challenge});
   })
   .catch(error => {
     console.log(error);
@@ -49,7 +49,7 @@ router.post('/new', (req, res, next) => {
 router.post('/:challengeId/delete', (req, res, next) => {
   Challenge.findByIdAndDelete(req.params.challengeId)
   .then(() => {
-      res.redirect('/');
+      res.redirect('/challenges');
   })
   .catch(error => {
       next(error);
