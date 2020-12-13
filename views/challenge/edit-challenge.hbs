@@ -44,9 +44,11 @@
     <br>
     <label>
         Milestones:
-        <input type="text" name="milestones" value={{challenge.milestones.[0]}}>
-        <input type="text" name="milestones" value={{challenge.milestones.[1]}}>
-        <input type="text" name="milestones" value={{challenge.milestones.[2]}}>
+        {{#each challenge.milestones}}
+            <input type="text" name="milestones" value={{this}}>
+        {{/each}}
+        <div id="milestones"></div>
+        <button id="add-milestone">Add a milestone</button>
     </label>
     <br>
     <label>
@@ -58,6 +60,5 @@
         Thoughts:
          <textarea type="text" name="thoughts">{{challenge.thoughts}}</textarea>
     </label>
-    <button type="submit">Create!</button>
-</form>
+    <button type="submit">Save changes</button>
 </form>
