@@ -3,13 +3,11 @@ const router  = express.Router();
 const Challenge = require('../models/Challenge.model');
 const hbs          = require('hbs');
 
-
-
 router.get('/', (req, res, next) => {
   const userInSession = req.session.currentUser;
-  console.log(userInSession);
-  Challenge.find(req.params.userId)
+  Challenge.find({ user: userInSession._id })
   .then(challengesFromDB => {
+    console.log(challengesFromDB);
     res.render('challenge/challenge-list', {challengesFromDB, userInSession});
   })
   .catch(error => {

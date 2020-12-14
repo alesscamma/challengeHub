@@ -1,5 +1,8 @@
-
+    {{#if userInSession}}
     <h2>Welcome, {{ userInSession.username }}!</h2>
+    {{else}}
+    <h2>Welcome!</h2>
+    {{/if}}
 
     <a href="/challenges">View my challenges</a>
     <br>
