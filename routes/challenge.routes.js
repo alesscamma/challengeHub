@@ -7,7 +7,6 @@ router.get('/', (req, res, next) => {
   const userInSession = req.session.currentUser;
   Challenge.find({ user: userInSession._id })
   .then(challengesFromDB => {
-    console.log(challengesFromDB);
     res.render('challenge/challenge-list', {challengesFromDB, userInSession});
   })
   .catch(error => {
@@ -83,5 +82,39 @@ router.post('/:challengeId/edit', (req, res, next) => {
       next(error);
   });
 });
+
+router.get('/:challengeId/join', (req, res, next) => {
+  let {challengeId} = req.params;
+  Challenge.findById(challengeId)
+  .then(challenge => {
+    hbs.registerHelper ("setChecked", function (value, currentValue) {
+      if (value == currentValue) {
+         return "checked";
+      } else {
+         return "";
+      }
+   });
+    res.render('challenge/copy-challenge', {challenge})
+  })
+  .catch(error => {
+    next(error);
+  });
+});
+
+router.post('/:challengeId/join', (req, res, next) => {
+  const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones} = req.body;
+  const user = req.session.currentUser._id;
+
+  Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones })
+  .then(challenge => {
+    res.render('challenge/challenge', {challenge});
+  })
+  .catch(error => {
+    console.log(error);
+    res.render('challenge/create-challenge', {errorMessage: error});
+  });
+});
+
+
 
 module.exports = router;

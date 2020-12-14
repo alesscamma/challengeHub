@@ -2,7 +2,9 @@
 {{#if userInSession}}
   {{#each allChallenges}}
     <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
-    <a href="#">Add this challenge to my list</a>
+    <form action="/challenges/{{this.id}}/join" method="GET">
+      <button>Join this challenge</button>
+    </form>
   {{/each}}
 {{else}}
   {{#each allChallenges}}

@@ -1,0 +1,58 @@
+<form action="/challenges/{{challenge.id}}/join" method="POST">
+    <label>
+        Category:
+        <input type="checkbox" id="Education" name="category" value="Education" {{setChecked challenge.category "Education"}}>Education
+        <input type="checkbox" id="Sports" name="category" value="Sports" {{setChecked challenge.category "Sports"}}>Sports
+        <input type="checkbox" id="Arts" name="category" value="Arts" {{setChecked challenge.category "Arts"}}>Arts
+        <input type="checkbox" id="Entertainment" name="category" value="Entertainment" {{setChecked challenge.category "Entertainment"}}>Entertainment
+        <input type="checkbox" id="Self-care" name="category" value="Self-care" {{setChecked challenge.category "Self-care"}}>Self-care
+        <input type="checkbox" id="Health" name="category" value="Health" {{setChecked challenge.category "Health"}}>Health
+        <input type="checkbox" id="Other" name="category" value="Other" {{setChecked challenge.category "Other"}}>Other
+    </label>
+
+    <br>
+    <label>
+        Time:
+         <input type="number" id="time-number" name="timeNumber" value={{challenge.timeNumber}}>
+        <br>
+        <input type="radio" id="time-days" name="timeFormat" value="Days" {{setChecked challenge.timeFormat "Days"}}>Days
+        <input type="radio" id="time-weeks" name="timeFormat" value="Weeks" {{setChecked challenge.timeFormat "Weeks"}}>Weeks
+        <input type="radio" id="time-months" name="timeFormat" value="Months" {{setChecked challenge.timeFormat "Months"}}>Months
+        <input type="radio" id="time-years" name="timeFormat" value="Years" {{setChecked challenge.timeFormat "Years"}}>Years
+    </label>
+    <br>
+    <label>
+        Goal:
+         <textarea type="text" name="goal">{{challenge.goal}}</textarea>
+    </label>
+    <br>
+    <label>
+        Start Date:
+        <input type="date" id="start-date" name="startDate" value={{challenge.startDate}}>
+    </label>
+    <br>
+    <label>
+        Description:
+         <textarea type="text" name="description">{{challenge.description}}</textarea>
+    </label>
+    <br>
+    <label>
+        Milestones:
+        {{#each challenge.milestones}}
+            <input type="text" name="milestones" value={{this}}>
+        {{/each}}
+        <div id="milestones"></div>
+        <button id="add-milestone">Add a milestone</button>
+    </label>
+    <br>
+    <label>
+        Resources:
+         <textarea type="text" name="resources">{{challenge.resources}}</textarea>
+    </label>
+    <br>
+    <label>
+        Thoughts:
+         <textarea type="text" name="thoughts">{{challenge.thoughts}}</textarea>
+    </label>
+    <button type="submit">Join</button>
+</form>
