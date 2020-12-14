@@ -1,8 +1,11 @@
 <h1>This is a global challenge view</h1>
-
-{{#each allChallenges}}
-  <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
-  {{#if userInSession}}
-    <a href="#">Add challenge to my list</a>
-  {{/if}}
-{{/each}}
+{{#if userInSession}}
+  {{#each allChallenges}}
+    <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
+    <a href="#">Add this challenge to my list</a>
+  {{/each}}
+{{else}}
+  {{#each allChallenges}}
+      <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
+  {{/each}}
+{{/if}}
