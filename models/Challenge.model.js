@@ -7,7 +7,7 @@ const challengeSchema = new Schema({
       ref: 'User',
     },
     category: {
-      type: String,
+      type: [String],
       enum: ['Education', 'Sports', 'Arts', 'Entertainment', 'Self-care', 'Health', 'Other'],
       required: true
     },
