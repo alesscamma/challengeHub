@@ -10,9 +10,10 @@ router.get('/', (req, res, next) => {
 
 router.get('/explore', (req, res, next) => {
   const userInSession = req.session.currentUser;
-  Challenge.find()
+  const userId = userInSession ? userInSession._id : null
+  Challenge.find({ user: { $nin: userId } })
   .then(allChallenges => {
-    res.render('explore', {userInSession, allChallenges});
+    res.render('explore', {allChallenges, userInSession});
   })
   .catch(error => {
     next(error);
