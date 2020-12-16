@@ -1,3 +1,7 @@
+{{#if errorMessageJoin}}
+<script>window.alert('Joining this challenge did not work. Try again!')</script>
+{{/if}}
+
 <form action="/challenges/{{challenge.id}}/join" method="POST">
     <label>
         Category:

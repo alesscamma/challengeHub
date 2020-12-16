@@ -1,8 +1,8 @@
-<h2>Create your challenge</h2>
-
-{{#if errorMessage}}
+{{#if errorMessageCreation}}
 <script>window.alert('Unsuccessful challenge creation. Try again!')</script>
 {{/if}}
+
+<h2>Create your challenge</h2>
 
 <form action="/challenges/new" method="POST">
     <label>

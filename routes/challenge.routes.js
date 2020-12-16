@@ -31,25 +31,25 @@ router.get('/:challengeId', (req, res, next) => {
 router.post('/new', (req, res, next) => {
   const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones} = req.body;
   const user = req.session.currentUser._id;
-  console.log(user);
 
   Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones })
   .then(challenge => {
     res.render('challenge/challenge', {challenge});
   })
   .catch(error => {
-    console.log(error);
-    res.render('challenge/create-challenge', {errorMessage: error});
+    res.render('challenge/create-challenge', {errorMessageCreation: error});
+    next(error);
   });
 });
 
 router.post('/:challengeId/delete', (req, res, next) => {
   Challenge.findByIdAndDelete(req.params.challengeId)
   .then(() => {
-      res.redirect('/challenges');
+    res.redirect('/challenges');
   })
   .catch(error => {
-      next(error);
+    res.render('challenge/challenge-list', {errorMessageDeletion: error});
+    next(error);
   });
 });
 
@@ -76,10 +76,11 @@ router.post('/:challengeId/edit', (req, res, next) => {
   let {challengeId} = req.params;
   Challenge.findByIdAndUpdate(challengeId, req.body, {new: true})
   .then(() => {
-      res.redirect('/challenges');
+    res.redirect('/challenges');
   })
   .catch(error => {
-      next(error);
+    res.render('challenge/edit-challenge', {errorMessageEdit: error});
+    next(error);
   });
 });
 
@@ -110,8 +111,8 @@ router.post('/:challengeId/join', (req, res, next) => {
     res.render('challenge/challenge', {challenge});
   })
   .catch(error => {
-    console.log(error);
-    res.render('challenge/create-challenge', {errorMessage: error});
+    res.render('challenge/copy-challenge', {errorMessageJoin: error});
+    next(error);
   });
 });
 
