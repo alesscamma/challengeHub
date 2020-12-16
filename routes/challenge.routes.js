@@ -21,6 +21,55 @@ router.get('/new', (req, res, next) => {
 router.get('/:challengeId', (req, res, next) => {
   Challenge.findById(req.params.challengeId)
   .then(challenge => {
+    let format = challenge.timeFormat; //to get from DB challenge.timeFormat
+    let timeNumb = challenge.timeNumber; // given from Db 
+    
+     duration= (format, timeNumb) =>  {
+      let number = 0;
+      if (format == 'Days'){
+         number = 1;
+      }
+      else if (format == 'Weeks'){
+           number = 7;
+      }
+      else if (format == 'Months'){
+           number = 30;
+      }
+        else if (format == 'Years'){
+           number = 365;
+      }
+      return timeNumb * number;
+    };
+    
+    
+    function addDays(StartDate, duration) {
+      var endDate = new Date(StartDate);
+      endDate.setDate(endDate.getDate() + duration);
+      return endDate;
+    }
+    
+    let today= new Date(); 
+    
+    
+    const startDate = new Date(challenge.startDate); //from db
+    const endDate = addDays(challenge.startDate, duration(format, timeNumb));
+
+    console.log(today);
+    console.log(startDate);
+    
+    let checkDate = (startDate, today, endDate) => {
+      const oneDay = 24 * 60 * 60 * 1000;
+      if (startDate > today ){
+        return Math.round(Math.abs((startDate - endDate) / oneDay));
+      } else{
+        return Math.round(Math.abs((today - endDate) / oneDay));
+      }
+    };
+    console.log(checkDate( startDate, today, addDays(startDate, duration(format, timeNumb))));
+
+    challenge.daysLeft = checkDate( startDate, today, addDays(startDate, duration(format, timeNumb)));
+    
+    
     res.render('challenge/challenge', {challenge});
   })
   .catch(error => {
@@ -95,7 +144,7 @@ router.get('/:challengeId/join', (req, res, next) => {
          return "";
       }
    });
-    res.render('challenge/copy-challenge', {challenge})
+    res.render('challenge/copy-challenge', {challenge});
   })
   .catch(error => {
     next(error);
