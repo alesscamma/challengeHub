@@ -41,23 +41,21 @@ router.get('/:challengeId', (req, res, next) => {
       return timeNumb * number;
     };
     
-    console.log(duration(format, timeNumb));
-    
-    
     
     function addDays(StartDate, duration) {
       var endDate = new Date(StartDate);
       endDate.setDate(endDate.getDate() + duration);
       return endDate;
     }
-    console.log(addDays(challenge.startDate, 14));
     
-    let today= new Date(2020, 12, 24); 
+    let today= new Date(); 
     
     
-    const startDate = new Date(2020, 12, 12); //from db
-    const endDate = new Date(2020, 12, 25);
-    
+    const startDate = new Date(challenge.startDate); //from db
+    const endDate = addDays(challenge.startDate, duration(format, timeNumb));
+
+    console.log(today);
+    console.log(startDate);
     
     let checkDate = (startDate, today, endDate) => {
       const oneDay = 24 * 60 * 60 * 1000;
@@ -68,7 +66,8 @@ router.get('/:challengeId', (req, res, next) => {
       }
     };
     console.log(checkDate( startDate, today, addDays(startDate, duration(format, timeNumb))));
-    
+
+    challenge.daysLeft = checkDate( startDate, today, addDays(startDate, duration(format, timeNumb)));
     
     
     res.render('challenge/challenge', {challenge});
