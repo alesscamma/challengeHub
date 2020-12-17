@@ -1,4 +1,3 @@
-const Challenge = require('../models/Challenge.model');
 
 const milestoneAdd = document.getElementById('add-milestone');
 const milestoneDiv = document.getElementById('milestones');
@@ -10,7 +9,6 @@ milestoneAdd.addEventListener('click', event => {
   milestoneDiv.appendChild(input);
   event.preventDefault();
 });
-
 
 
 
