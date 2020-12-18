@@ -83,10 +83,10 @@ router.post('/new', (req, res, next) => {
 
   Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones })
   .then(challenge => {
-    res.render('challenge/challenge', {challenge});
+    console.log(challenge)
+    res.redirect(`/challenges/${challenge._id}`);
   })
   .catch(error => {
-    res.render('challenge/create-challenge', {errorMessageCreation: error});
     next(error);
   });
 });
@@ -97,7 +97,6 @@ router.post('/:challengeId/delete', (req, res, next) => {
     res.redirect('/challenges');
   })
   .catch(error => {
-    res.render('challenge/challenge-list', {errorMessageDeletion: error});
     next(error);
   });
 });
@@ -107,14 +106,14 @@ router.get('/:challengeId/edit', (req, res, next) => {
 
   Challenge.findById(challengeId)
   .then(challenge => {
-    hbs.registerHelper ("setChecked", function (value, currentValue) {
-      if (value == currentValue) {
-         return "checked";
-      } else {
-         return "";
-      }
+    hbs.registerHelper ("setChecked", function (value, category) {
+        if (value.includes(category)) {
+        return "checked";
+     } else {
+        return "";
+     }
    });
-      res.render('challenge/edit-challenge', {challenge});
+    res.render('challenge/edit-challenge', {challenge});
   })
   .catch(error => {
       next(error);
@@ -128,7 +127,6 @@ router.post('/:challengeId/edit', (req, res, next) => {
     res.redirect('/challenges');
   })
   .catch(error => {
-    res.render('challenge/edit-challenge', {errorMessageEdit: error});
     next(error);
   });
 });
@@ -137,13 +135,13 @@ router.get('/:challengeId/join', (req, res, next) => {
   let {challengeId} = req.params;
   Challenge.findById(challengeId)
   .then(challenge => {
-    hbs.registerHelper ("setChecked", function (value, currentValue) {
-      if (value == currentValue) {
-         return "checked";
-      } else {
-         return "";
-      }
-   });
+    hbs.registerHelper ("setChecked", function (value, category) {
+      if (value.includes(category)) {
+      return "checked";
+   } else {
+      return "";
+   }
+  });
     res.render('challenge/copy-challenge', {challenge});
   })
   .catch(error => {
@@ -160,11 +158,9 @@ router.post('/:challengeId/join', (req, res, next) => {
     res.render('challenge/challenge', {challenge});
   })
   .catch(error => {
-    res.render('challenge/copy-challenge', {errorMessageJoin: error});
     next(error);
   });
 });
-
 
 
 module.exports = router;

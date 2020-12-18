@@ -22,14 +22,14 @@ const challengeSchema = new Schema({
     },
     goal: {
       type: String,
-      required: true,
+      required: true
     },
     startDate: {
       type: String,
       required: true
     },
     description: {
-      type: String,
+      type: String
     },
     milestones: {
       type: [String]
@@ -38,13 +38,13 @@ const challengeSchema = new Schema({
       type: Number
     },
     resources: {
-      type: String,
+      type: String
     },
     thoughts: {
-      type: String,
+      type: String
     },
     daysLeft: {
-      type: Number,
+      type: Number
     },
     dailyProgress: {
       type: [Boolean]
