@@ -129,8 +129,8 @@ router.post('/:challengeId/edit', (req, res, next) => {
 
   } else {
     Challenge.findByIdAndUpdate(challengeId, req.body, {new: true})
-    .then(() => {
-      res.redirect('/challenges');
+    .then(challenge => {
+      res.redirect(`/challenges/${challenge._id}`);
     })
     .catch(error => {
       next(error);

@@ -2,10 +2,10 @@ const milestoneAdd = document.getElementById('add-milestone');
 const milestoneDiv = document.getElementById('milestones');
 
 milestoneAdd.addEventListener('click', event => {
-  const input = document.createElement('input');
-  input.setAttribute('type', 'text');
-  input.setAttribute('name', 'milestones');
-  milestoneDiv.appendChild(input);
+  const textarea = document.createElement('textarea');
+  textarea.setAttribute('type', 'text');
+  textarea.setAttribute('name', 'milestones');
+  milestoneDiv.appendChild(textarea);
   event.preventDefault();
 });
 

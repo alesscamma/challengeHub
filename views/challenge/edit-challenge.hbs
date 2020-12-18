@@ -45,7 +45,8 @@
     <label>
         Milestones:
         {{#each challenge.milestones}}
-            <input type="text" name="milestones" value={{this}}>
+            {{!-- <input type="text" name="milestones" value={{this}}> --}}
+            <textarea type="text" name="milestones">{{this}}</textarea>
         {{/each}}
         <div id="milestones"></div>
         <button id="add-milestone">Add a milestone</button>

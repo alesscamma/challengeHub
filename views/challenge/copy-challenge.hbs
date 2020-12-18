@@ -1,7 +1,3 @@
-{{#if errorMessageJoin}}
-<script>window.alert('Joining this challenge did not work. Try again!')</script>
-{{/if}}
-
 <form action="/challenges/{{challenge.id}}/join" method="POST">
     <label>
         Category:
@@ -43,7 +39,9 @@
     <label>
         Milestones:
         {{#each challenge.milestones}}
-            <input type="text" name="milestones" value={{this}}>
+            {{!-- <input type="text" name="milestones" value={{this}}> --}}
+            <textarea type="text" name="milestones">{{this}}</textarea>
+
         {{/each}}
         <div id="milestones"></div>
         <button id="add-milestone">Add a milestone</button>
