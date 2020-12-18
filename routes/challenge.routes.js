@@ -122,13 +122,20 @@ router.get('/:challengeId/edit', (req, res, next) => {
 
 router.post('/:challengeId/edit', (req, res, next) => {
   let {challengeId} = req.params;
-  Challenge.findByIdAndUpdate(challengeId, req.body, {new: true})
-  .then(() => {
-    res.redirect('/challenges');
-  })
-  .catch(error => {
-    next(error);
+
+  if (!req.body.category || !req.body.timeNumber || !req.body.timeFormat || !req.body.goal || !req.body.startDate) {
+    res.render('error', {errorMessage: 'Please fill in all mandatory fields: category, time, start date and goal.', challengeId});
+    return;
+
+  } else {
+    Challenge.findByIdAndUpdate(challengeId, req.body, {new: true})
+    .then(() => {
+      res.redirect('/challenges');
+    })
+    .catch(error => {
+      next(error);
   });
+  }
 });
 
 router.get('/:challengeId/join', (req, res, next) => {
@@ -155,7 +162,7 @@ router.post('/:challengeId/join', (req, res, next) => {
 
   Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones })
   .then(challenge => {
-    res.render('challenge/challenge', {challenge});
+    res.redirect(`/challenges/${challenge._id}`);
   })
   .catch(error => {
     next(error);

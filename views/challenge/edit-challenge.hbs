@@ -1,7 +1,7 @@
 <h2>Edit your challenge</h2>
 
-{{#if errorMessageEdit}}
-<script>window.alert('Unsuccessful challenge creation. Try again!')</script>
+{{#if errorMessage}}
+<p>{{errorMessage}}</p>
 {{/if}}
 
 <form action="/challenges/{{challenge._id}}/edit" method="POST">
