@@ -79,7 +79,6 @@ router.get('/:challengeId', (req, res, next) => {
 
 router.post('/new', (req, res, next) => {
   const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones } = req.body;
-  console.log('this is my req.body ===>', req.body)
   const user = req.session.currentUser._id;
 
   const milestonesForDB = milestones.map(milestone => {
@@ -106,10 +105,11 @@ router.post('/:challengeId/delete', (req, res, next) => {
 });
 
 router.post('/:challengeId/count', (req, res, next) => {
-  console.log(req.params.challengeId);
+  console.log("...");
+  console.log(req.body);
+  console.log("...");
   Challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true})
   .then(challenge => {
-    console.log('Just to make sure:', challenge);
     res.redirect('/challenges');
   })
   .catch(error => {
