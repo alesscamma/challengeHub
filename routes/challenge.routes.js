@@ -108,9 +108,17 @@ router.post('/:challengeId/count', (req, res, next) => {
   console.log("...");
   console.log(req.body);
   console.log("...");
+  let value = req.body;
   Challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true})
   .then(challenge => {
-    res.redirect('/challenges');
+    hbs.registerHelper ("setChecked", function (value) {
+      if (value == 'on' ) {
+      return "checked";
+   } else {
+      return "";
+   }
+ });
+    res.redirect(`/challenges/${challenge._id}`);
   })
   .catch(error => {
     next(error);

@@ -29,7 +29,7 @@
             <ol class="milestones-list">
                 {{#each challenge.milestonesForDB}}
                     <li>{{this.name}}</li>
-                    <input type="checkbox" name={{this.name}} >
+                    <input type="checkbox" name={{this.name}} {{setChecked req.body }}>
                 {{/each}}
             </ol>
         {{/if}}
