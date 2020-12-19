@@ -31,9 +31,10 @@ const challengeSchema = new Schema({
     description: {
       type: String
     },
-    milestones: {
-      type: [String]
-    },
+    milestones: [{
+      name: {type: String},
+      status: {type: Boolean}
+    }],
     progress: {
       type: Number
     },

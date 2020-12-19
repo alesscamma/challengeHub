@@ -169,5 +169,15 @@ router.post('/:challengeId/join', (req, res, next) => {
   });
 });
 
+router.post('/:challengeId/count', (req, res, next) => {
+  Challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true})
+  .then(challenge => {
+    res.redirect(`/challenges/${challenge._id}`);
+  })
+  .catch(error => {
+    next(error);
+  });
+});
+
 
 module.exports = router;
