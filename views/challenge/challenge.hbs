@@ -1,6 +1,5 @@
 <a href="/challenges">Back to list of challenges</a>
 <hr>
-
 <section id="challenge-header">
     <h2>{{challenge.goal}} in {{challenge.timeNumber}} {{challenge.timeFormat}}</h2>
     <h3>Category: {{challenge.category}}</h3>
@@ -21,6 +20,8 @@
             <p>Resources: {{challenge.resources}}</p>
         {{/if}}
     </div>
+</section>
+<section id="challenge-body-milestones">
     <div class="challenge-milestones">
         {{#if challenge.milestones}}
         Milestones:
@@ -31,8 +32,15 @@
                 {{/each}}
             </ol>
         {{/if}}
+        <form action="/challenges/{{challenge.id}}/count" method="POST">
+            <button>Save milestone changes</button>
+        </form>
+    </div>
+    <div class="challenge-progress">
         <p>Progress: function needed that counts %: milestones ticked/all milestones</p>
     </div>
+</section>
+<section id="challenge-body-invite">
     <div class="challenge-invite">
         <form action="/challenges/{{challenge.id}}/" method="POST">
             <label>
