@@ -21,8 +21,8 @@ router.get('/new', (req, res, next) => {
 router.get('/:challengeId', (req, res, next) => {
   Challenge.findById(req.params.challengeId)
   .then(challenge => {
-    let format = challenge.timeFormat; //to get from DB challenge.timeFormat
-    let timeNumb = challenge.timeNumber; // given from Db 
+    let format = challenge.timeFormat; 
+    let timeNumb = challenge.timeNumber; 
     
      duration= (format, timeNumb) =>  {
       let number = 0;
