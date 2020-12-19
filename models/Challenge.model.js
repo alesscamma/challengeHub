@@ -31,10 +31,10 @@ const challengeSchema = new Schema({
     description: {
       type: String
     },
-    milestones: [{
-      name: {type: String},
-      status: {type: Boolean}
-    }],
+    milestonesForDB: [new Schema({
+      name: String,
+      status: {type: Boolean, default: false}
+    }, {_id: false})],
     progress: {
       type: Number
     },

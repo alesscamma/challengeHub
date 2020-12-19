@@ -45,10 +45,9 @@
     <label>
         Milestones:
         <div id="milestones">
-        {{#each challenge.milestones}}
+        {{#each challenge.milestonesForDB}}
             <div>
-            <textarea type="text" name="milestones">{{this}}</textarea>
-            {{!-- <button id="remove-milestone">Remove</button> --}}
+            <textarea type="text" name="milestones">{{this.name}}</textarea>
             </div>
         {{/each}}
         </div>

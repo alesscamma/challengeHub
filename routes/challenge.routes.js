@@ -78,12 +78,16 @@ router.get('/:challengeId', (req, res, next) => {
 });
 
 router.post('/new', (req, res, next) => {
-  const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones} = req.body;
+  const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones } = req.body;
+  console.log('this is my req.body ===>', req.body)
   const user = req.session.currentUser._id;
 
-  Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones })
+  const milestonesForDB = milestones.map(milestone => {
+    return {name: milestone, status: false};
+  });
+
+  Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB })
   .then(challenge => {
-    console.log(challenge)
     res.redirect(`/challenges/${challenge._id}`);
   })
   .catch(error => {
@@ -94,6 +98,18 @@ router.post('/new', (req, res, next) => {
 router.post('/:challengeId/delete', (req, res, next) => {
   Challenge.findByIdAndDelete(req.params.challengeId)
   .then(() => {
+    res.redirect('/challenges');
+  })
+  .catch(error => {
+    next(error);
+  });
+});
+
+router.post('/:challengeId/count', (req, res, next) => {
+  console.log(req.params.challengeId);
+  Challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true})
+  .then(challenge => {
+    console.log('Just to make sure:', challenge);
     res.redirect('/challenges');
   })
   .catch(error => {
@@ -138,6 +154,7 @@ router.post('/:challengeId/edit', (req, res, next) => {
   }
 });
 
+
 router.get('/:challengeId/join', (req, res, next) => {
   let {challengeId} = req.params;
   Challenge.findById(challengeId)
@@ -169,15 +186,19 @@ router.post('/:challengeId/join', (req, res, next) => {
   });
 });
 
-router.post('/:challengeId/count', (req, res, next) => {
-  Challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true})
-  .then(challenge => {
-    res.redirect(`/challenges/${challenge._id}`);
-  })
-  .catch(error => {
-    next(error);
-  });
-});
+
+
+// router.post('/:challengeId/count', (req, res, next) => {
+//   console.log(req.params.challengeId);
+//   Challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true})
+//   .then(challenge => {
+//     console.log('Just to make sure:', challenge);
+//     res.redirect('/challenges');
+//   })
+//   .catch(error => {
+//     next(error);
+//   });
+// });
 
 
 module.exports = router;

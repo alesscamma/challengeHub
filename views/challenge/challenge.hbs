@@ -23,11 +23,11 @@
 </section>
 <section id="challenge-body-milestones">
     <div class="challenge-milestones">
-        {{#if challenge.milestones}}
+        {{#if challenge.milestonesForDB}}
         Milestones:
             <ol class="milestones-list">
-                {{#each challenge.milestones}}
-                    <li>{{this}}</li>
+                {{#each challenge.milestonesForDB}}
+                    <li>{{this.name}}</li>
                     <input type="checkbox">
                 {{/each}}
             </ol>
