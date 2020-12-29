@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Challenge = require('../models/Challenge.model');
-const hbs          = require('hbs');
+const hbs = require('hbs');
 
 router.get('/', (req, res, next) => {
   const userInSession = req.session.currentUser;
@@ -114,18 +114,26 @@ router.post('/:challengeId/count', (req, res, next) => {
   } else {
     output = false;
   }
-  console.log("...");
-  console.log(body);
-  console.log("...");
-  console.log(output);
-  let milestonesObj = {
-    milestonesForDB: [
-      {name: 'Test name', status: output }
-    ]
-  }
-  Challenge.findByIdAndUpdate(challengeId, { $set: milestonesObj }, {new: true})
+
+  Challenge.findById(challengeId)
   .then(challenge => {
-    res.redirect(`/challenges/${challenge._id}`);
+    let milestones = challenge.milestonesForDB.map(milestone => {
+      return {status: output, name: milestone.name};
+    })
+    console.log('Milestones: ', milestones);
+    console.log('...')
+    let milestonesObj = {
+      milestonesForDB: milestones
+    };
+    console.log('MilestonesObj: ', milestonesObj);
+    console.log('...');
+    Challenge.findByIdAndUpdate(challengeId, {$set: milestonesObj}, {new: true})
+    .then(challenge => {
+      res.redirect(`/challenges/${challenge._id}`)
+    })
+    .catch(error => {
+      next(error);
+    })
   })
   .catch(error => {
     next(error);
