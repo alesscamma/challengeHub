@@ -77,6 +77,7 @@ router.get('/:challengeId', (req, res, next) => {
   });
 });
 
+
 router.post('/new', (req, res, next) => {
   const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones } = req.body;
   const user = req.session.currentUser._id;
@@ -105,19 +106,25 @@ router.post('/:challengeId/delete', (req, res, next) => {
 });
 
 router.post('/:challengeId/count', (req, res, next) => {
+  let {challengeId} = req.params;
+  let output;
+  let body = req.body['milestone'];
+  if(body) {
+    output = true;
+  } else {
+    output = false;
+  }
   console.log("...");
-  console.log(req.body);
+  console.log(body);
   console.log("...");
-  let value = req.body;
-  Challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true})
+  console.log(output);
+  let milestonesObj = {
+    milestonesForDB: [
+      {name: 'Test name', status: output }
+    ]
+  }
+  Challenge.findByIdAndUpdate(challengeId, { $set: milestonesObj }, {new: true})
   .then(challenge => {
-    hbs.registerHelper ("setChecked", function (value) {
-      if (value == 'on' ) {
-      return "checked";
-   } else {
-      return "";
-   }
- });
     res.redirect(`/challenges/${challenge._id}`);
   })
   .catch(error => {
@@ -145,14 +152,20 @@ router.get('/:challengeId/edit', (req, res, next) => {
 });
 
 router.post('/:challengeId/edit', (req, res, next) => {
-  let {challengeId} = req.params;
+  const {challengeId} = req.params;
+  const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones } = req.body;
+
+  const milestonesForDB = milestones.map(milestone => {
+    return {name: milestone, status: false};
+  });
 
   if (!req.body.category || !req.body.timeNumber || !req.body.timeFormat || !req.body.goal || !req.body.startDate) {
     res.render('error', {errorMessage: 'Please fill in all mandatory fields: category, time, start date and goal.', challengeId});
     return;
 
   } else {
-    Challenge.findByIdAndUpdate(challengeId, req.body, {new: true})
+    console.log(req.body);
+    Challenge.findByIdAndUpdate(challengeId, { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB }, {new: true})
     .then(challenge => {
       res.redirect(`/challenges/${challenge._id}`);
     })
@@ -185,7 +198,11 @@ router.post('/:challengeId/join', (req, res, next) => {
   const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones} = req.body;
   const user = req.session.currentUser._id;
 
-  Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones })
+  const milestonesForDB = milestones.map(milestone => {
+    return {name: milestone, status: false};
+  });
+
+  Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB })
   .then(challenge => {
     res.redirect(`/challenges/${challenge._id}`);
   })
@@ -193,20 +210,6 @@ router.post('/:challengeId/join', (req, res, next) => {
     next(error);
   });
 });
-
-
-
-// router.post('/:challengeId/count', (req, res, next) => {
-//   console.log(req.params.challengeId);
-//   Challenge.findByIdAndUpdate(req.params.challengeId, req.body, {new: true})
-//   .then(challenge => {
-//     console.log('Just to make sure:', challenge);
-//     res.redirect('/challenges');
-//   })
-//   .catch(error => {
-//     next(error);
-//   });
-// });
 
 
 module.exports = router;

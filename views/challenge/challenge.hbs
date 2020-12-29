@@ -29,11 +29,11 @@
             <ol class="milestones-list">
                 {{#each challenge.milestonesForDB}}
                     <li>{{this.name}}</li>
-                    <input type="checkbox" name={{this.name}} {{setChecked req.body }}>
+                    <input type="checkbox" name='milestone'>
                 {{/each}}
             </ol>
         {{/if}}
-            <button>Save milestone changes</button>
+            <button type="submit">Edit my progress</button>
         </form>
     </div>
     <div class="challenge-progress">
