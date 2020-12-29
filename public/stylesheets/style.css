@@ -3,7 +3,6 @@
 body {
   padding: 0;
   font-family: 'Lato', sans-serif;
-  font: 14px;
 }
 
 .home-img {
@@ -66,4 +65,9 @@ body {
 .home-btns {
   padding-top: 20px;
 }
+
+.home-text {
+  color: #204620;
+}
+
 
