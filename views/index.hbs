@@ -1,8 +1,13 @@
-<h1>{{title}}</h1>
-<p>Welcome to the home page of {{title}}</p>
+<div>
+<img class="w-50 p-3 home-img img-fluid rounded mx-auto d-block" src="/images/woman-watering-plants-by-matheus.png" alt="Woman watering plants">
+</div>
 {{#if userInSession}}
-  <a href="/challenges">View my challenges</a>
-  <br>
-  <a href="/challenges/new">Create a new challenge!</a>
+  <div class="text-center home-btns">
+    <a class="challenge-btn rounded" href="/challenges/new">New challenge</a>
+    <a class="challenges-btn rounded" href="/challenges">My challenges</a>
+  </div>
+{{else}}
+  <div class="text-center home-btns">
+    <a class="get-started-btn rounded" href="/signup">Get started</a>
+  </div>
 {{/if}}
-<a href="/explore">Explore</a>
