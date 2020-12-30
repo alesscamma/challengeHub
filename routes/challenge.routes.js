@@ -15,10 +15,12 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/new', (req, res, next) => {
-  res.render('challenge/create-challenge');
+  const userInSession = req.session.currentUser;
+  res.render('challenge/create-challenge', {userInSession});
 });
 
 router.get('/:challengeId', (req, res, next) => {
+  const userInSession = req.session.currentUser;
   Challenge.findById(req.params.challengeId)
   .then(challenge => {
     let format = challenge.timeFormat; 
@@ -70,7 +72,7 @@ router.get('/:challengeId', (req, res, next) => {
     challenge.daysLeft = checkDate( startDate, today, addDays(startDate, duration(format, timeNumb)));
     
     
-    res.render('challenge/challenge', {challenge});
+    res.render('challenge/challenge', {challenge, userInSession});
   })
   .catch(error => {
     next(error);
@@ -154,6 +156,7 @@ router.post('/:challengeId/count', (req, res, next) => {
 });
 
 router.get('/:challengeId/edit', (req, res, next) => {
+  const userInSession = req.session.currentUser;
   let {challengeId} = req.params;
 
   Challenge.findById(challengeId)
@@ -165,7 +168,7 @@ router.get('/:challengeId/edit', (req, res, next) => {
         return "";
      }
    });
-    res.render('challenge/edit-challenge', {challenge});
+    res.render('challenge/edit-challenge', {challenge, userInSession});
   })
   .catch(error => {
       next(error);
@@ -198,6 +201,7 @@ router.post('/:challengeId/edit', (req, res, next) => {
 
 
 router.get('/:challengeId/join', (req, res, next) => {
+  const userInSession = req.session.currentUser;
   let {challengeId} = req.params;
   Challenge.findById(challengeId)
   .then(challenge => {
@@ -208,7 +212,7 @@ router.get('/:challengeId/join', (req, res, next) => {
       return "";
    }
   });
-    res.render('challenge/copy-challenge', {challenge});
+    res.render('challenge/copy-challenge', {challenge, userInSession});
   })
   .catch(error => {
     next(error);
