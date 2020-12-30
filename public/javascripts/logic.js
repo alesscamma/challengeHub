@@ -6,8 +6,10 @@ milestoneAdd.addEventListener('click', event => {
   const textarea = document.createElement('textarea');
   textarea.setAttribute('type', 'text');
   textarea.setAttribute('name', 'milestones');
+  textarea.classList.add('form-control');
   const removeButton = document.createElement('button');
-  removeButton.innerHTML="Remove";
+  removeButton.classList.add('remove-btn');
+  removeButton.innerHTML="Remove milestone";
   removeButton.onclick = event => {
     removeButton.parentNode.parentNode.removeChild(div);
     event.preventDefault();
