@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="375pt" height="374.999991pt" viewBox="0 0 375 374.999991" version="1.2">
+<defs>
+<clipPath id="clip1">
+  <path d="M 5 209 L 154 209 L 154 301 L 5 301 Z M 5 209 "/>
+</clipPath>
+<clipPath id="clip2">
+  <path d="M 319.546875 0 L 414.835938 157.988281 L 55.1875 374.90625 L -40.097656 216.917969 Z M 319.546875 0 "/>
+</clipPath>
+<clipPath id="clip3">
+  <path d="M 319.378906 -0.285156 L 415.054688 158.347656 L 55.40625 375.261719 L -40.269531 216.632812 Z M 319.378906 -0.285156 "/>
+</clipPath>
+<clipPath id="clip4">
+  <path d="M 70 69 L 367 69 L 367 279 L 70 279 Z M 70 69 "/>
+</clipPath>
+<clipPath id="clip5">
+  <path d="M 319.546875 0 L 414.835938 157.988281 L 55.1875 374.90625 L -40.097656 216.917969 Z M 319.546875 0 "/>
+</clipPath>
+<clipPath id="clip6">
+  <path d="M 319.378906 -0.285156 L 415.054688 158.347656 L 55.40625 375.261719 L -40.269531 216.632812 Z M 319.378906 -0.285156 "/>
+</clipPath>
+<clipPath id="clip7">
+  <path d="M 21 0 L 368 0 L 368 260 L 21 260 Z M 21 0 "/>
+</clipPath>
+<clipPath id="clip8">
+  <path d="M 319.546875 0 L 414.835938 157.988281 L 55.1875 374.90625 L -40.097656 216.917969 Z M 319.546875 0 "/>
+</clipPath>
+<clipPath id="clip9">
+  <path d="M 319.378906 -0.285156 L 415.054688 158.347656 L 55.40625 375.261719 L -40.269531 216.632812 Z M 319.378906 -0.285156 "/>
+</clipPath>
+<filter id="alpha" filterUnits="objectBoundingBox" x="0%" y="0%" width="100%" height="100%">
+  <feColorMatrix type="matrix" in="SourceGraphic" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+</filter>
+<mask id="mask0">
+  <g filter="url(#alpha)">
+<rect x="0" y="0" width="375" height="374.999991" style="fill:rgb(0%,0%,0%);fill-opacity:0.0784;stroke:none;"/>
+  </g>
+</mask>
+<clipPath id="clip11">
+  <path d="M 49 69 L 346 69 L 346 258 L 49 258 Z M 49 69 "/>
+</clipPath>
+<clipPath id="clip12">
+  <path d="M 298.546875 0 L 393.835938 157.988281 L 34.1875 374.90625 L -61.097656 216.917969 Z M 298.546875 0 "/>
+</clipPath>
+<clipPath id="clip13">
+  <path d="M 298.378906 -0.285156 L 394.054688 158.347656 L 34.40625 375.261719 L -61.269531 216.632812 Z M 298.378906 -0.285156 "/>
+</clipPath>
+<clipPath id="clip10">
+  <rect x="0" y="0" width="347" height="260"/>
+</clipPath>
+<g id="surface5" clip-path="url(#clip10)">
+<g clip-path="url(#clip11)" clip-rule="nonzero">
+<g clip-path="url(#clip12)" clip-rule="nonzero">
+<g clip-path="url(#clip13)" clip-rule="nonzero">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(30.979919%,46.669006%,17.649841%);fill-opacity:1;" d="M 345.804688 79.277344 C 345.804688 79.277344 218.5625 47.851562 136.832031 97.148438 C 55.101562 146.445312 49.730469 257.851562 49.730469 257.851562 Z M 345.804688 79.277344 "/>
+</g>
+</g>
+</g>
+</g>
+</defs>
+<g id="surface1">
+<g clip-path="url(#clip1)" clip-rule="nonzero">
+<g clip-path="url(#clip2)" clip-rule="nonzero">
+<g clip-path="url(#clip3)" clip-rule="nonzero">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(77.249146%,89.019775%,51.759338%);fill-opacity:1;" d="M 153.023438 209.484375 L 5.167969 291.050781 L 10.78125 300.351562 Z M 153.023438 209.484375 "/>
+</g>
+</g>
+</g>
+<g clip-path="url(#clip4)" clip-rule="nonzero">
+<g clip-path="url(#clip5)" clip-rule="nonzero">
+<g clip-path="url(#clip6)" clip-rule="nonzero">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(77.249146%,89.019775%,51.759338%);fill-opacity:1;" d="M 253.507812 255.78125 C 171.777344 305.074219 70.730469 257.851562 70.730469 257.851562 C 70.730469 257.851562 76.101562 146.445312 157.832031 97.148438 C 239.5625 47.851562 366.804688 79.277344 366.804688 79.277344 C 366.804688 79.277344 335.238281 206.484375 253.507812 255.78125 Z M 253.507812 255.78125 "/>
+</g>
+</g>
+</g>
+<g clip-path="url(#clip7)" clip-rule="nonzero">
+<g clip-path="url(#clip8)" clip-rule="nonzero">
+<g clip-path="url(#clip9)" clip-rule="nonzero">
+<use xlink:href="#surface5" transform="matrix(1,0,0,1,21,0)" mask="url(#mask0)"/>
+</g>
+</g>
+</g>
+</g>
+</svg>

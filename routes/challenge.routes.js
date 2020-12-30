@@ -109,39 +109,23 @@ router.post('/:challengeId/delete', (req, res, next) => {
 
 router.post('/:challengeId/count', (req, res, next) => {
   let {challengeId} = req.params;
+
+  const completedMilestonesArr = req.body.milestone;
   
   Challenge.findById(challengeId)
   .then(challenge => {
-    let body = req.body['milestone'];
-    let output = body.map(() => {
-      return true;
-    })
-    let diff = challenge.milestonesForDB.length - body.length;
-    if(diff > 0) {
-      output.push(false);
-    }
 
-    console.log(output);
-    console.log(output[0]);
-    console.log(output[1]);
-    console.log(output[2]);
-
-    const outputValue = () => {
-      for(let i=0; i<output.length; i++) {
-        return output[i];
-      }
-    }
-    
     let milestones = challenge.milestonesForDB.map(milestone => {
-      return {status: outputValue(), name: milestone.name};
+      return {
+       name: milestone.name,
+       status:  completedMilestonesArr.includes(milestone.name) ? true : false
+      }
     })
-    console.log('Milestones: ', milestones);
-    console.log('...')
+
     let milestonesObj = {
       milestonesForDB: milestones
     };
-    console.log('MilestonesObj: ', milestonesObj);
-    console.log('...');
+
     Challenge.findByIdAndUpdate(challengeId, {$set: milestonesObj}, {new: true})
     .then(challenge => {
       res.redirect(`/challenges/${challenge._id}`)
