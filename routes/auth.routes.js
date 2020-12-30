@@ -71,7 +71,7 @@ router.post('/login', (req, res, next) => {
                 req.session.currentUser = user;
                 res.redirect('/userProfile');
             } else {
-                res.render('auth/login', { errorMessage: 'Incorrect password.'});
+                res.render('auth/login', { errorMessage: 'Incorrect password, please try again'});
             }
         })
         .catch(err => next(err));

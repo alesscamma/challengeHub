@@ -1,9 +1,13 @@
 {{#if userInSession}}
-    <h2>Welcome, {{ userInSession.username }}!</h2>
-    <a href="/challenges">View my challenges</a>
-    <br>
-    <a href="/challenges/new">Create a new challenge!</a>
-    <br>
-    <a href="/explore">Explore</a>
+<div class="text-center">
+<h2>Welcome, {{ userInSession.username }}!</h2>
+</div>
+<div class="text-center">
+<img class="w-50 p-3 home-img img-fluid rounded mx-auto d-block" src="/images/man-doing-yoga-by-matheus.png" alt="Man doing yoga">
+</div>
+<div class="text-center home-btns">
+    <a class="challenge-btn rounded" href="/challenges/new">New challenge</a>
+    <a class="challenges-btn rounded" href="/challenges">My challenges</a>
+</div>
 {{/if}}
 
