@@ -5,6 +5,10 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+h1, h2 {
+  color: #204620
+}
+
 .home-img {
   padding-top: 50px;
 }
@@ -70,4 +74,24 @@ body {
   color: #204620;
 }
 
+.form-signup-login {
+  width: 45%;
+}
+
+#signup-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-login-btn {
+  border: none;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.error {
+  background-color: #EB1515;
+  color: white;
+}
 

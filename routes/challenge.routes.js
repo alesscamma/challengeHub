@@ -107,18 +107,31 @@ router.post('/:challengeId/delete', (req, res, next) => {
 
 router.post('/:challengeId/count', (req, res, next) => {
   let {challengeId} = req.params;
-  let output;
-  let body = req.body['milestone'];
-  if(body) {
-    output = true;
-  } else {
-    output = false;
-  }
-
+  
   Challenge.findById(challengeId)
   .then(challenge => {
+    let body = req.body['milestone'];
+    let output = body.map(() => {
+      return true;
+    })
+    let diff = challenge.milestonesForDB.length - body.length;
+    if(diff > 0) {
+      output.push(false);
+    }
+
+    console.log(output);
+    console.log(output[0]);
+    console.log(output[1]);
+    console.log(output[2]);
+
+    const outputValue = () => {
+      for(let i=0; i<output.length; i++) {
+        return output[i];
+      }
+    }
+    
     let milestones = challenge.milestonesForDB.map(milestone => {
-      return {status: output, name: milestone.name};
+      return {status: outputValue(), name: milestone.name};
     })
     console.log('Milestones: ', milestones);
     console.log('...')
