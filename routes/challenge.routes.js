@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const Challenge = require('../models/Challenge.model');
 const hbs = require('hbs');
+require('../helpers/hbs-helpers')(hbs);
 
 router.get('/', (req, res, next) => {
   const userInSession = req.session.currentUser;
@@ -83,10 +84,13 @@ router.get('/:challengeId', (req, res, next) => {
 router.post('/new', (req, res, next) => {
   const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones } = req.body;
   const user = req.session.currentUser._id;
+  let milestonesForDB = [];
 
-  const milestonesForDB = milestones.map(milestone => {
-    return {name: milestone, status: false};
-  });
+  if(milestones) {
+    milestonesForDB = milestones.map(milestone => {
+      return {name: milestone, status: false};
+    });
+  }
 
   Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB })
   .then(challenge => {
@@ -145,13 +149,6 @@ router.get('/:challengeId/edit', (req, res, next) => {
 
   Challenge.findById(challengeId)
   .then(challenge => {
-    hbs.registerHelper ("setChecked", function (value, category) {
-        if (value.includes(category)) {
-        return "checked";
-     } else {
-        return "";
-     }
-   });
     res.render('challenge/edit-challenge', {challenge, userInSession});
   })
   .catch(error => {
@@ -189,13 +186,6 @@ router.get('/:challengeId/join', (req, res, next) => {
   let {challengeId} = req.params;
   Challenge.findById(challengeId)
   .then(challenge => {
-    hbs.registerHelper ("setChecked", function (value, category) {
-      if (value.includes(category)) {
-      return "checked";
-   } else {
-      return "";
-   }
-  });
     res.render('challenge/copy-challenge', {challenge, userInSession});
   })
   .catch(error => {
@@ -206,10 +196,13 @@ router.get('/:challengeId/join', (req, res, next) => {
 router.post('/:challengeId/join', (req, res, next) => {
   const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones} = req.body;
   const user = req.session.currentUser._id;
+  let milestonesForDB = [];
 
-  const milestonesForDB = milestones.map(milestone => {
-    return {name: milestone, status: false};
-  });
+  if(milestones) {
+    milestonesForDB = milestones.map(milestone => {
+      return {name: milestone, status: false};
+    });
+  }
 
   Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB })
   .then(challenge => {
