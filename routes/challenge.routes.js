@@ -81,7 +81,6 @@ router.get('/:challengeId', (req, res, next) => {
     let progress =  (countChallenge, trueMilestones ) => {
       return progressPct = Math.round((trueMilestones/countChallenge)*100) + "%";
      };
-     console.log(progress(countChallenge,trueMilestones));
 
      challenge.progressPercent = progress(countChallenge,trueMilestones);
 
