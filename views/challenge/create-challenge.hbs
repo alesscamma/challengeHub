@@ -4,13 +4,34 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Category:</label>
             <div class="col-sm-10">
-                <input type="checkbox" id="education" name="category" value="Education"> Education
-                <input type="checkbox" id="sports" name="category" value="Sports"> Sports
-                <input type="checkbox" id="arts" name="category" value="Arts"> Arts
-                <input type="checkbox" id="entertainment" name="category" value="Entertainment"> Entertainment
-                <input type="checkbox" id="self-care" name="category" value="Self-care"> Self-care
-                <input type="checkbox" id="health" name="category" value="Health"> Health
-                <input type="checkbox" id="other" name="category" value="Other"> Other
+                <label class="checkbox-container select-container">Education
+                    <input type="checkbox" id="education" name="category" value="Education">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Sports
+                    <input type="checkbox" id="sports" name="category" value="Sports">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Arts
+                    <input type="checkbox" id="arts" name="category" value="Arts">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Entertainment
+                    <input type="checkbox" id="entertainment" name="category" value="Entertainment">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Self-care
+                    <input type="checkbox" id="self-care" name="category" value="Self-care">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Health
+                    <input type="checkbox" id="health" name="category" value="Health">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Other
+                    <input type="checkbox" id="other" name="category" value="Other">
+                    <span class="checkmark"></span>
+                </label>
             </div>
         </div>
         <div class="form-group row">
@@ -19,11 +40,27 @@
                 <div>
                 <input type="number" class="form-control" id="time-number" name="timeNumber" placeholder="Insert a number">
                 </div>
-                <div>
-                <input type="radio" id="time-days" name="timeFormat" value="Days"> Days
+                <div class="custom-control-inline time-format-selection">
+                    <label class="radio-container select-container">Days
+                        <input type="radio" id="time-days" name="timeFormat" value="Days">
+                        <span class="radiomark"></span>
+                    </label>
+                    <label class="radio-container select-container">Weeks
+                        <input type="radio" id="time-weeks" name="timeFormat" value="Weeks">
+                        <span class="radiomark"></span>
+                    </label>
+                    <label class="radio-container select-container">Months
+                        <input type="radio" id="time-months" name="timeFormat" value="Months">
+                        <span class="radiomark"></span>
+                    </label>
+                    <label class="radio-container select-container">Years
+                        <input type="radio" id="time-years" name="timeFormat" value="Years">
+                        <span class="radiomark"></span>
+                    </label>
+                {{!-- <input type="radio" id="time-days" name="timeFormat" value="Days"> Days
                 <input type="radio" id="time-weeks" name="timeFormat" value="Weeks"> Weeks
                 <input type="radio" id="time-months" name="timeFormat" value="Months"> Months
-                <input type="radio" id="time-years" name="timeFormat" value="Years"> Years
+                <input type="radio" id="time-years" name="timeFormat" value="Years"> Years --}}
                 </div>
             </div>
         </div>

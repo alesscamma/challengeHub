@@ -1,67 +1,116 @@
-<h2>Edit your challenge</h2>
-
-{{#if errorMessage}}
-<p>{{errorMessage}}</p>
-{{/if}}
-
-<form action="/challenges/{{challenge._id}}/edit" method="POST">
-    <label>
-        Category:
-        <input type="checkbox" id="Education" name="category" value="Education" {{setChecked challenge.category "Education"}}>Education
-        <input type="checkbox" id="Sports" name="category" value="Sports" {{setChecked challenge.category "Sports"}}>Sports
-        <input type="checkbox" id="Arts" name="category" value="Arts" {{setChecked challenge.category "Arts"}}>Arts
-        <input type="checkbox" id="Entertainment" name="category" value="Entertainment" {{setChecked challenge.category "Entertainment"}}>Entertainment
-        <input type="checkbox" id="Self-care" name="category" value="Self-care" {{setChecked challenge.category "Self-care"}}>Self-care
-        <input type="checkbox" id="Health" name="category" value="Health" {{setChecked challenge.category "Health"}}>Health
-        <input type="checkbox" id="Other" name="category" value="Other" {{setChecked challenge.category "Other"}}>Other
-    </label>
-
-    <br>
-    <label>
-        Time:
-         <input type="number" id="time-number" name="timeNumber" value={{challenge.timeNumber}}>
-        <br>
-        <input type="radio" id="time-days" name="timeFormat" value="Days" {{setChecked challenge.timeFormat "Days"}}>Days
-        <input type="radio" id="time-weeks" name="timeFormat" value="Weeks" {{setChecked challenge.timeFormat "Weeks"}}>Weeks
-        <input type="radio" id="time-months" name="timeFormat" value="Months" {{setChecked challenge.timeFormat "Months"}}>Months
-        <input type="radio" id="time-years" name="timeFormat" value="Years" {{setChecked challenge.timeFormat "Years"}}>Years
-    </label>
-    <br>
-    <label>
-        Goal:
-         <textarea type="text" name="goal">{{challenge.goal}}</textarea>
-    </label>
-    <br>
-    <label>
-        Start Date:
-        <input type="date" id="start-date" name="startDate" value={{challenge.startDate}}>
-    </label>
-    <br>
-    <label>
-        Description:
-         <textarea type="text" name="description">{{challenge.description}}</textarea>
-    </label>
-    <br>
-    <label>
-        Milestones:
-        <div id="milestones">
-        {{#each challenge.milestonesForDB}}
-            <div>
-            <textarea type="text" name="milestones">{{this.name}}</textarea>
+<h2 class="text-center">Edit your challenge</h2>
+<div>
+    <form action="/challenges/{{challenge._id}}/edit" method="POST">
+       <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Category:</label>
+            <div class="col-sm-10">
+                <label class="checkbox-container select-container">Education
+                    <input type="checkbox" id="education" name="category" value="Education" {{setChecked challenge.category "Education"}}>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Sports
+                    <input type="checkbox" id="sports" name="category" value="Sports" {{setChecked challenge.category "Sports"}}>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Arts
+                    <input type="checkbox" id="arts" name="category" value="Arts" {{setChecked challenge.category "Arts"}}>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Entertainment
+                    <input type="checkbox" id="entertainment" name="category" value="Entertainment" {{setChecked challenge.category "Entertainment"}}>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Self-care
+                    <input type="checkbox" id="self-care" name="category" value="Self-care" {{setChecked challenge.category "Self-care"}}>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Health
+                    <input type="checkbox" id="health" name="category" value="Health" {{setChecked challenge.category "Health"}}>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container select-container">Other
+                    <input type="checkbox" id="other" name="category" value="Other" {{setChecked challenge.category "Other"}}>
+                    <span class="checkmark"></span>
+                </label>
             </div>
-        {{/each}}
         </div>
-        <button id="add-milestone">Add a milestone</button>
-    </label>
-    <br>
-    <label>
-        Resources:
-         <textarea type="text" name="resources">{{challenge.resources}}</textarea>
-    </label>
-    <br>
-    <label>
-        Thoughts:
-         <textarea type="text" name="thoughts">{{challenge.thoughts}}</textarea>
-    </label>
-    <button type="submit">Save changes</button>
-</form>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Time:</label>
+            <div class="col-sm-10">
+                <div>
+                <input type="number" class="form-control" id="time-number" name="timeNumber" value={{challenge.timeNumber}}>
+                </div>
+                <div class="custom-control-inline time-format-selection">
+                    <label class="radio-container select-container">Days
+                        <input type="radio" id="time-days" name="timeFormat" value="Days" {{setChecked challenge.timeFormat "Days"}}>
+                        <span class="radiomark"></span>
+                    </label>
+                    <label class="radio-container select-container">Weeks
+                        <input type="radio" id="time-weeks" name="timeFormat" value="Weeks" {{setChecked challenge.timeFormat "Weeks"}}>
+                        <span class="radiomark"></span>
+                    </label>
+                    <label class="radio-container select-container">Months
+                        <input type="radio" id="time-months" name="timeFormat" value="Months" {{setChecked challenge.timeFormat "Months"}}>
+                        <span class="radiomark"></span>
+                    </label>
+                    <label class="radio-container select-container">Years
+                        <input type="radio" id="time-years" name="timeFormat" value="Years" {{setChecked challenge.timeFormat "Years"}}>
+                        <span class="radiomark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Goal:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" type="text" name="goal">{{challenge.goal}}</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Start date:</label>
+            <div class="col-sm-10">
+                <input type="date" id="start-date" class="form-control" name="startDate" value={{challenge.startDate}}>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Description:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" type="text" name="description">{{challenge.description}}</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Milestones:
+                <button id="add-milestone">Add a milestone</button>
+            </label>
+            <div id="milestones" class="col-sm-10">
+                {{#each challenge.milestonesForDB}}
+                <div class="milestone-field">
+                    <textarea type="text" name="milestones" class="form-control">{{this.name}}</textarea>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Resources:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" type="text" name="resources">{{challenge.resources}}</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Thoughts:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" type="text" name="thoughts">{{challenge.thoughts}}</textarea>
+            </div>
+        </div>
+        {{!-- <div class="form-group row">
+            <label>
+                Do you want to track your daily efforts?
+                <input type="radio" id="daily-yes" name="dailyEfforts" value="Yes">Yes
+                <input type="radio" id="daily-no" name="dailyEfforts" value="No">No
+            </label>
+        </div> --}}
+        <div class="text-center">
+            <button type="submit" class="challenge-btn">Save changes</button>
+        </div>
+    </form>
+</div>
