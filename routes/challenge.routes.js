@@ -181,7 +181,6 @@ router.post('/:challengeId/edit', (req, res, next) => {
     return;
 
   } else {
-    console.log(req.body);
     Challenge.findByIdAndUpdate(challengeId, { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB }, {new: true})
     .then(challenge => {
       res.redirect(`/challenges/${challenge._id}`);
