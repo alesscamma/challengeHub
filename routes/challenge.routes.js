@@ -68,11 +68,24 @@ router.get('/:challengeId', (req, res, next) => {
         return Math.round(Math.abs((today - endDate) / oneDay));
       }
     };
-    console.log(checkDate( startDate, today, addDays(startDate, duration(format, timeNumb))));
 
     challenge.daysLeft = checkDate( startDate, today, addDays(startDate, duration(format, timeNumb)));
     
-    
+    let countChallenge = challenge.milestonesForDB.length;
+    let trueMilestones =0;
+        for (let i=0; i<challenge.milestonesForDB.length; i++) {
+        if(challenge.milestonesForDB[i].status == true) {
+        trueMilestones++;
+        }
+      }
+    let progress =  (countChallenge, trueMilestones ) => {
+      return progressPct = Math.round((trueMilestones/countChallenge)*100) + "%";
+     };
+     console.log(progress(countChallenge,trueMilestones));
+
+     challenge.progressPercent = progress(countChallenge,trueMilestones);
+
+
     res.render('challenge/challenge', {challenge, userInSession});
   })
   .catch(error => {
@@ -123,8 +136,8 @@ router.post('/:challengeId/count', (req, res, next) => {
       return {
        name: milestone.name,
        status:  completedMilestonesArr.includes(milestone.name) ? true : false
-      }
-    })
+      };
+    });
 
     let milestonesObj = {
       milestonesForDB: milestones
@@ -132,11 +145,11 @@ router.post('/:challengeId/count', (req, res, next) => {
 
     Challenge.findByIdAndUpdate(challengeId, {$set: milestonesObj}, {new: true})
     .then(challenge => {
-      res.redirect(`/challenges/${challenge._id}`)
+      res.redirect(`/challenges/${challenge._id}`);
     })
     .catch(error => {
       next(error);
-    })
+    });
   })
   .catch(error => {
     next(error);

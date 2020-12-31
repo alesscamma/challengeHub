@@ -47,6 +47,9 @@ const challengeSchema = new Schema({
     daysLeft: {
       type: Number
     },
+    progressPercent: {
+      type: String
+    },
     dailyProgress: {
       type: [Boolean]
     }
