@@ -23,8 +23,8 @@
 </section>
 <section id="challenge-body-milestones">
     <div class="challenge-milestones">
-        <form action="/challenges/{{challenge.id}}/count" method="POST">
         {{#if challenge.milestonesForDB}}
+        <form action="/challenges/{{challenge.id}}/count" method="POST">
         Milestones:
             <ol class="milestones-list">
                 {{#each challenge.milestonesForDB}}
@@ -32,9 +32,9 @@
                     <input type="checkbox" name="milestone[]" value={{this.name}} {{#if this.status}} checked {{/if}}>
                 {{/each}}
             </ol>
-        {{/if}}
             <button type="submit">Save my progress</button>
         </form>
+        {{/if}}
     </div>
     <div class="challenge-progress">
         <p>Progress: {{challenge.progressPercent}}</p>
