@@ -71,20 +71,23 @@ router.get('/:challengeId', (req, res, next) => {
 
     challenge.daysLeft = checkDate( startDate, today, addDays(startDate, duration(format, timeNumb)));
     
-    let countChallenge = challenge.milestonesForDB.length;
-    let trueMilestones =0;
-        for (let i=0; i<challenge.milestonesForDB.length; i++) {
+    if(challenge.milestonesForDB.length > 0) {
+      let countChallenge = challenge.milestonesForDB.length;
+      let trueMilestones =0;
+      for (let i=0; i<challenge.milestonesForDB.length; i++) {
         if(challenge.milestonesForDB[i].status == true) {
         trueMilestones++;
         }
       }
-    let progress =  (countChallenge, trueMilestones ) => {
-      return progressPct = Math.round((trueMilestones/countChallenge)*100) + "%";
-     };
-
-     challenge.progressPercent = progress(countChallenge,trueMilestones);
-
-
+      let progress = (countChallenge, trueMilestones ) => {
+        return Math.round((trueMilestones/countChallenge)*100) + "%";
+      };
+      
+      challenge.progressPercent = progress(countChallenge,trueMilestones);
+    } else {
+      challenge.progressPercent = '0%';
+    }
+    
     res.render('challenge/challenge', {challenge, userInSession});
   })
   .catch(error => {
