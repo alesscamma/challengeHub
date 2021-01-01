@@ -127,6 +127,7 @@ router.post('/:challengeId/count', (req, res, next) => {
   let {challengeId} = req.params;
 
   const completedMilestonesArr = req.body.milestone;
+  console.log(completedMilestonesArr);
   
   Challenge.findById(challengeId)
   .then(challenge => {
