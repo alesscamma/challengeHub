@@ -27,23 +27,19 @@ router.get('/:challengeId', (req, res, next) => {
     let format = challenge.timeFormat; 
     let timeNumb = challenge.timeNumber; 
     
-     duration= (format, timeNumb) =>  {
+    duration = (format, timeNumb) =>  {
       let number = 0;
       if (format == 'Days'){
-         number = 1;
-      }
-      else if (format == 'Weeks'){
-           number = 7;
-      }
-      else if (format == 'Months'){
-           number = 30;
-      }
-        else if (format == 'Years'){
-           number = 365;
+        number = 1;
+      } else if (format == 'Weeks'){
+        number = 7;
+      } else if (format == 'Months'){
+        number = 30;
+      } else if (format == 'Years'){
+        number = 365;
       }
       return timeNumb * number;
     };
-    
     
     function addDays(StartDate, duration) {
       var endDate = new Date(StartDate);
@@ -53,12 +49,8 @@ router.get('/:challengeId', (req, res, next) => {
     
     let today= new Date(); 
     
-    
-    const startDate = new Date(challenge.startDate); //from db
+    const startDate = new Date(challenge.startDate);
     const endDate = addDays(challenge.startDate, duration(format, timeNumb));
-
-    console.log(today);
-    console.log(startDate);
     
     let checkDate = (startDate, today, endDate) => {
       const oneDay = 24 * 60 * 60 * 1000;
@@ -73,10 +65,10 @@ router.get('/:challengeId', (req, res, next) => {
     
     if(challenge.milestonesForDB.length > 0) {
       let countChallenge = challenge.milestonesForDB.length;
-      let trueMilestones =0;
+      let trueMilestones = 0;
       for (let i=0; i<challenge.milestonesForDB.length; i++) {
         if(challenge.milestonesForDB[i].status == true) {
-        trueMilestones++;
+          trueMilestones++;
         }
       }
       let progress = (countChallenge, trueMilestones ) => {
@@ -99,21 +91,27 @@ router.get('/:challengeId', (req, res, next) => {
 router.post('/new', (req, res, next) => {
   const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones } = req.body;
   const user = req.session.currentUser._id;
+  const userInSession = req.session.currentUser;
   let milestonesForDB = [];
 
-  if(milestones) {
-    milestonesForDB = milestones.map(milestone => {
-      return {name: milestone, status: false};
+  if (!req.body.category || !req.body.timeNumber || !req.body.timeFormat || !req.body.goal || !req.body.startDate) {
+    res.render('error', {errorMessageCreation: 'Please fill in all mandatory fields: category, time, start date and goal.', userInSession});
+    return;
+  } else {
+    if(milestones) {
+      milestonesForDB = milestones.map(milestone => {
+        return {name: milestone, status: false};
+      });
+    }
+  
+    Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB })
+    .then(challenge => {
+      res.redirect(`/challenges/${challenge._id}`);
+    })
+    .catch(error => {
+      next(error);
     });
   }
-
-  Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB })
-  .then(challenge => {
-    res.redirect(`/challenges/${challenge._id}`);
-  })
-  .catch(error => {
-    next(error);
-  });
 });
 
 router.post('/:challengeId/delete', (req, res, next) => {
@@ -130,7 +128,6 @@ router.post('/:challengeId/count', (req, res, next) => {
   let {challengeId} = req.params;
 
   const completedMilestonesArr = req.body.milestone;
-  console.log(completedMilestonesArr);
   
   Challenge.findById(challengeId)
   .then(challenge => {
@@ -175,13 +172,18 @@ router.get('/:challengeId/edit', (req, res, next) => {
 router.post('/:challengeId/edit', (req, res, next) => {
   const {challengeId} = req.params;
   const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones } = req.body;
+  const userInSession = req.session.currentUser;
 
-  const milestonesForDB = milestones.map(milestone => {
-    return {name: milestone, status: false};
-  });
+  let milestonesForDB = [];
+
+  if(milestones) {
+    milestonesForDB = milestones.map(milestone => {
+      return {name: milestone, status: false};
+    });
+  }
 
   if (!req.body.category || !req.body.timeNumber || !req.body.timeFormat || !req.body.goal || !req.body.startDate) {
-    res.render('error', {errorMessage: 'Please fill in all mandatory fields: category, time, start date and goal.', challengeId});
+    res.render('error', {errorMessage: 'Please fill in all mandatory fields: category, time, start date and goal.', challengeId, userInSession});
     return;
 
   } else {
@@ -194,7 +196,6 @@ router.post('/:challengeId/edit', (req, res, next) => {
   });
   }
 });
-
 
 router.get('/:challengeId/join', (req, res, next) => {
   const userInSession = req.session.currentUser;
@@ -211,6 +212,7 @@ router.get('/:challengeId/join', (req, res, next) => {
 router.post('/:challengeId/join', (req, res, next) => {
   const { category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestones} = req.body;
   const user = req.session.currentUser._id;
+  const userInSession = req.session.currentUser;
   let milestonesForDB = [];
 
   if(milestones) {
@@ -219,14 +221,18 @@ router.post('/:challengeId/join', (req, res, next) => {
     });
   }
 
-  Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB })
-  .then(challenge => {
+  if (!req.body.category || !req.body.timeNumber || !req.body.timeFormat || !req.body.goal || !req.body.startDate) {
+    res.render('error', {errorMessageJoin: 'Please fill in all mandatory fields: category, time, start date and goal.', userInSession});
+    return;
+  } else {
+    Challenge.create({ user, category, timeNumber, timeFormat, goal, startDate, description, resources, thoughts, milestonesForDB })
+    .then(challenge => {
     res.redirect(`/challenges/${challenge._id}`);
   })
-  .catch(error => {
+    .catch(error => {
     next(error);
   });
+  }
 });
-
 
 module.exports = router;

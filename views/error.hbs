@@ -1,7 +1,17 @@
 {{#if errorMessage}}
-<p>{{errorMessage}}</p>
-<a href='/challenges/{{this.challengeId}}'>Try again</a>
+  <p>{{errorMessage}}</p>
+  <a href='/challenges/{{this.challengeId}}'>Try again</a>
 {{else}}
-<h1>Error!</h1>
-<h2>There was an error on the server! Check the console!</h2>
+  {{#if errorMessageCreation}}
+    <p>{{errorMessageCreation}}</p>
+    <a href='/challenges/new'>Try again</a>
+  {{else}}
+    {{#if errorMessageJoin}}
+      <p>{{errorMessageJoin}}</p>
+      <a href='/explore'>Try again</a>
+    {{else}}
+      <h1>Error!</h1>
+      <h2>There was an error on the server! Check the console!</h2>
+    {{/if}}
+  {{/if}}
 {{/if}}
