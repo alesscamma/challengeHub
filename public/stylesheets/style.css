@@ -217,3 +217,55 @@ h1, h2 {
 .time-format-selection {
   padding-top: 10px;
 }
+
+.challenge-box {
+  border: 5px solid #C5E384;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.challenge-box h3 {
+  color: #204620;
+  padding-top: 10px;
+}
+
+.challenge-btns {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.view-challenge-btn {
+  padding: 10px 18px;
+  background-color: #204620;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  font-size: 0.75em;
+  margin-right: 10px;
+}
+
+.view-challenge-btn:hover {
+  color: #204620;
+  border: 1px solid #204620;
+  background-color: white;
+  text-decoration: none;
+}
+
+.delete-btn {
+  padding: 10px 18px;
+  background-color: #ECF39E;
+  border-radius: 8px;
+  color: #204620;
+  border: none;
+  font-size: 0.75em;
+}
+
+.delete-btn:hover {
+  background-color: white;
+  text-decoration: none;
+  border: 1px solid #ECF39E;
+}
+
+.container {
+  padding-bottom: 10px;
+}
