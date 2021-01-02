@@ -1,7 +1,7 @@
 <a href="/challenges">Back to list of challenges</a>
 <section id="challenge-header">
     <h2>{{challenge.goal}} in {{challenge.timeNumber}} {{challenge.timeFormat}}</h2>
-    <h3>Category: {{challenge.category}}</h3>
+    <h3>Category: {{challenge.category.[0]}}{{#if challenge.category.[1]}} | {{challenge.category.[1]}}{{/if}}{{#if challenge.category.[2]}} | {{challenge.category.[2]}}{{/if}}{{#if challenge.category.[3]}} | {{challenge.category.[3]}}{{/if}}{{#if challenge.category.[4]}} | {{challenge.category.[4]}}{{/if}}{{#if challenge.category.[5]}} | {{challenge.category.[5]}}{{/if}}{{#if challenge.category.[6]}} | {{challenge.category.[6]}}{{/if}}</h3>
 </section>
 <section id="challenge-body">
     <div class="challenge-time">
