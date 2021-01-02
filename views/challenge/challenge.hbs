@@ -1,5 +1,4 @@
 <a href="/challenges">Back to list of challenges</a>
-<hr>
 <section id="challenge-header">
     <h2>{{challenge.goal}} in {{challenge.timeNumber}} {{challenge.timeFormat}}</h2>
     <h3>Category: {{challenge.category}}</h3>
@@ -32,12 +31,15 @@
                     <input type="checkbox" name="milestone[]" value="{{this.name}}" {{#if this.status}} checked {{/if}}>
                 {{/each}}
             </ol>
-            <button type="submit">Save my progress</button>
+            <button type="submit" class="view-challenge-btn">Save my progress</button>
         </form>
         {{/if}}
     </div>
-    <div class="challenge-progress">
+    {{!-- <div class="challenge-progress">
         <p>Progress: {{challenge.progressPercent}}</p>
+    </div> --}}
+    <div class="progress" style="height: 20px;">
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{challenge.progressPercent}};" aria-valuenow="{{challenge.progressPercent}}" aria-valuemin="0" aria-valuemax="100">{{challenge.progressPercent}}</div>
     </div>
 </section>
 <section id="challenge-body-invite">

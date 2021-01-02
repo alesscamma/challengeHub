@@ -269,3 +269,8 @@ h1, h2 {
 .container {
   padding-bottom: 10px;
 }
+
+.progress-bar {
+  background-color: #C5E384;
+  color: #204620;
+}
