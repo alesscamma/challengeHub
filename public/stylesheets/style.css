@@ -231,7 +231,6 @@ h1, h2 {
 
 .challenge-btns {
   display: flex;
-  padding-bottom: 10px;
 }
 
 .view-challenge-btn {
@@ -242,6 +241,7 @@ h1, h2 {
   border: none;
   font-size: 0.75em;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .view-challenge-btn:hover {

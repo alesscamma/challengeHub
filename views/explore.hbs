@@ -1,15 +1,33 @@
-<h1>This is a global challenge view</h1>
+<h1 class="text-center">Explore all challenges</h1>
 {{#if userInSession}}
+  <div class="container">
+    <div class="row justify-content-md-center">
   {{#each allChallenges}}
-    <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
-    <form action="/challenges/{{this.id}}/join" method="GET">
-      <button>Join this challenge</button>
-    </form>
-  {{/each}}
-  <a href="/challenges">My list of challenges</a>
-{{else}}
-  {{#each allChallenges}}
+    <div class="col-sm-6 challenge-box">
       <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
+      <p>{{this.category}}</p>
+      <form action="/challenges/{{this.id}}/join" method="GET">
+        <button class="view-challenge-btn">Join this challenge</button>
+      </form>
+    </div>
   {{/each}}
-  <a href="/signup">Get started</a>
+    </div>
+  </div>
+  <div class="text-center">
+    <a href="/challenges" class="challenges-btn">My challenges</a>
+  </div>
+{{else}}
+  <div class="container">
+    <div class="row justify-content-md-center">
+  {{#each allChallenges}}
+    <div class="col-sm-6 challenge-box">
+      <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
+      <p>{{this.category}}</p>
+    </div>
+  {{/each}}
+    </div>
+  </div>
+  <div class="text-center">
+    <a href="/signup" class="get-started-btn rounded">Get started</a>
+  </div>
 {{/if}}
