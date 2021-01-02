@@ -25,7 +25,7 @@ router.get('/:challengeId', (req, res, next) => {
   Challenge.findById(req.params.challengeId)
   .then(challenge => {
     let format = challenge.timeFormat; 
-    let timeNumb = challenge.timeNumber; 
+    let timeNumb = challenge.timeNumber;
     
     duration = (format, timeNumb) =>  {
       let number = 0;
@@ -61,8 +61,8 @@ router.get('/:challengeId', (req, res, next) => {
       }
     };
 
-    challenge.daysLeft = checkDate( startDate, today, addDays(startDate, duration(format, timeNumb)));
-    
+    days = checkDate( startDate, today, addDays(startDate, duration(format, timeNumb)));
+
     if(challenge.milestonesForDB.length > 0) {
       let countChallenge = challenge.milestonesForDB.length;
       let trueMilestones = 0;
@@ -75,27 +75,24 @@ router.get('/:challengeId', (req, res, next) => {
         return Math.round((trueMilestones/countChallenge)*100) + "%";
       };
       
-      // challenge.progressPercent = progress(countChallenge,trueMilestones);
       progressPct = progress(countChallenge,trueMilestones);
 
     } else {
-      // challenge.progressPercent = '0%';
       progressPct = '0%';
     }
 
-    let progressObj = {
+    let daysLeftAndProgressObj = {
+      daysLeft: days,
       progressPercent: progressPct
-    };
+    }
 
-    Challenge.findByIdAndUpdate(req.params.challengeId, {$set: progressObj}, {new: true})
+    Challenge.findByIdAndUpdate(req.params.challengeId, {$set: daysLeftAndProgressObj}, {new: true})
     .then(challenge => {
       res.render('challenge/challenge', {challenge, userInSession});
     })
     .catch(error => {
       next(error);
     })
-    
-    // res.render('challenge/challenge', {challenge, userInSession});
   })
   .catch(error => {
     next(error);

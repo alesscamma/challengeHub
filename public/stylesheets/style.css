@@ -10,7 +10,7 @@ body > .navbar .navbar-brand{
   margin-left: -30px;
 }
 
-h1, h2 {
+h1, h2, h5 {
   color: #204620;
   padding-bottom: 17px;
 }
@@ -274,4 +274,10 @@ h1, h2 {
 .progress-bar {
   background-color: #C5E384;
   color: #204620;
+}
+
+#challenge-body {
+  background-color: #C5E384;
+  padding: 15px 10px;
+  border-radius: 8px;
 }

@@ -5,7 +5,7 @@
   {{#each allChallenges}}
     <div class="col-sm-6 challenge-box">
       <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
-      <p>{{this.category}}</p>
+      <p>{{this.category.[0]}}{{#if this.category.[1]}} | {{this.category.[1]}}{{/if}}{{#if this.category.[2]}} | {{this.category.[2]}}{{/if}}{{#if this.category.[3]}} | {{this.category.[3]}}{{/if}}{{#if this.category.[4]}} | {{this.category.[4]}}{{/if}}{{#if this.category.[5]}} | {{this.category.[5]}}{{/if}}{{#if this.category.[6]}} | {{this.category.[6]}}{{/if}}</p>
       <form action="/challenges/{{this.id}}/join" method="GET">
         <button class="view-challenge-btn">Join this challenge</button>
       </form>
@@ -22,7 +22,7 @@
   {{#each allChallenges}}
     <div class="col-sm-6 challenge-box">
       <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
-      <p>{{this.category}}</p>
+      <p>{{this.category.[0]}}{{#if this.category.[1]}} | {{this.category.[1]}}{{/if}}{{#if this.category.[2]}} | {{this.category.[2]}}{{/if}}{{#if this.category.[3]}} | {{this.category.[3]}}{{/if}}{{#if this.category.[4]}} | {{this.category.[4]}}{{/if}}{{#if this.category.[5]}} | {{this.category.[5]}}{{/if}}{{#if this.category.[6]}} | {{this.category.[6]}}{{/if}}</p>
     </div>
   {{/each}}
     </div>
