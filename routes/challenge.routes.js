@@ -75,12 +75,27 @@ router.get('/:challengeId', (req, res, next) => {
         return Math.round((trueMilestones/countChallenge)*100) + "%";
       };
       
-      challenge.progressPercent = progress(countChallenge,trueMilestones);
+      // challenge.progressPercent = progress(countChallenge,trueMilestones);
+      progressPct = progress(countChallenge,trueMilestones);
+
     } else {
-      challenge.progressPercent = '0%';
+      // challenge.progressPercent = '0%';
+      progressPct = '0%';
     }
+
+    let progressObj = {
+      progressPercent: progressPct
+    };
+
+    Challenge.findByIdAndUpdate(req.params.challengeId, {$set: progressObj}, {new: true})
+    .then(challenge => {
+      res.render('challenge/challenge', {challenge, userInSession});
+    })
+    .catch(error => {
+      next(error);
+    })
     
-    res.render('challenge/challenge', {challenge, userInSession});
+    // res.render('challenge/challenge', {challenge, userInSession});
   })
   .catch(error => {
     next(error);

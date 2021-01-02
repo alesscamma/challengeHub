@@ -231,6 +231,7 @@ h1, h2 {
 
 .challenge-btns {
   display: flex;
+  padding-top: 10px;
 }
 
 .view-challenge-btn {

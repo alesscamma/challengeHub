@@ -6,6 +6,9 @@
         <div class="col-sm-6 challenge-box">
             <h3>{{this.goal}} in {{this.timeNumber}} {{this.timeFormat}}</h3>
             <p>{{this.category}}</p>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{this.progressPercent}};" aria-valuenow="{{this.progressPercent}}" aria-valuemin="0" aria-valuemax="100">{{this.progressPercent}}</div>
+            </div>
             <div class="challenge-btns">
                 <a href="/challenges/{{this.id}}" class="view-challenge-btn text-center">See challenge</a>
                 <form action="/challenges/{{this.id}}/delete" method="POST">
