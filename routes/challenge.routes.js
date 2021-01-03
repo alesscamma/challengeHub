@@ -236,3 +236,4 @@ router.post('/:challengeId/join', (req, res, next) => {
 });
 
 module.exports = router;
+
