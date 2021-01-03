@@ -10,7 +10,7 @@ body > .navbar .navbar-brand{
   margin-left: -30px;
 }
 
-h1, h2, h5 {
+h1, h2 {
   color: #204620;
   padding-bottom: 17px;
 }
@@ -276,8 +276,25 @@ h1, h2, h5 {
   color: #204620;
 }
 
-#challenge-body {
-  background-color: #C5E384;
+.challenge-body {
+  border: 3px solid #C5E384;
   padding: 15px 10px;
   border-radius: 8px;
 }
+
+.challenge-body-milestones {
+  border: 3px solid #C5E384;
+  padding: 15px 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.milestones-container {
+  display: block;
+  margin-left: -30px;
+}
+
+h5 {
+  color: #204620;
+} 
