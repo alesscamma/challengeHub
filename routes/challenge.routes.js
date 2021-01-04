@@ -84,7 +84,7 @@ router.get('/:challengeId', (req, res, next) => {
     let daysLeftAndProgressObj = {
       daysLeft: days,
       progressPercent: progressPct
-    }
+    };
 
     Challenge.findByIdAndUpdate(req.params.challengeId, {$set: daysLeftAndProgressObj}, {new: true})
     .then(challenge => {
@@ -92,7 +92,7 @@ router.get('/:challengeId', (req, res, next) => {
     })
     .catch(error => {
       next(error);
-    })
+    });
   })
   .catch(error => {
     next(error);

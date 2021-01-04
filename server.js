@@ -24,9 +24,6 @@ mailTransporter.sendMail(mailDetails, function(err, data) {
     } 
 }); 
 
-router.post('/send-email', (req, res, next) => {
-  let { email, subject, message } = req.body;
-  res.render('message', { email, subject, message });
-});
+
 
 module.exports = app;

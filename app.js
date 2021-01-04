@@ -59,5 +59,7 @@ app.use('/challenges', authNeeded, challenge);
 const auth = require('./routes/auth.routes');
 app.use('/', auth);
 
+const emailing = require('./routes/email.routes');
+app.use('/', emailing);
 
 module.exports = app;
