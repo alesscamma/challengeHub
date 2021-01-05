@@ -1,13 +1,7 @@
 const nodemailer = require('nodemailer'); 
   
   
-let mailTransporter = nodemailer.createTransport({ 
-    service: 'gmail', 
-    auth: { 
-        user: 'getchallenged42@gmail.com', 
-        pass: 'Challengeapp!'
-    } 
-}); 
+
   
 let mailDetails = { 
     from: 'getchallenged42@gmail.com', 

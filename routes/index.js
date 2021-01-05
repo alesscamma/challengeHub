@@ -20,4 +20,9 @@ router.get('/explore', (req, res, next) => {
   });
 });
 
+router.get('/invite-friends', (req, res, next)=>{
+  const userInSession = req.session.currentUser;
+  res.render('invite', {userInSession});
+});
+
 module.exports = router;
