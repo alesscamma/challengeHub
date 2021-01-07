@@ -298,3 +298,8 @@ h1, h2 {
 h5 {
   color: #204620;
 } 
+
+.green-alert {
+  background-color: #C5E384;
+  color: #204620;
+}
