@@ -347,5 +347,5 @@ module.exports = {
   
     </body>
   </html>
-` }
-}
+`; }
+};
