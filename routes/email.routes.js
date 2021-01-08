@@ -4,7 +4,12 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const templates = require('../templates/template');
 
-router.post('/send-email', (req, res, next) => {
+router.get('/invite-friends', (req, res, next) => {
+  const userInSession = req.session.currentUser;
+  res.render('invite', {userInSession});
+});
+
+router.post('/invite-friends', (req, res, next) => {
   const user = req.session.currentUser;
   let { email, message } = req.body;
   let subject = `Invitation for you from ${user.username} - join Challenge Hub today!`;
@@ -23,7 +28,7 @@ router.post('/send-email', (req, res, next) => {
     text: message,
     html: templates.template(message, user),
   })
-  .then(() => res.render('invite', {successMessage: 'Invitation sent!'}))
+  .then(() => res.redirect('/invite-friends'))
   .catch(error => console.log(error));
 });
 

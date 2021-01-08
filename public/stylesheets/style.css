@@ -17,6 +17,11 @@ h1, h2 {
 
 .home-img {
   padding-top: 50px;
+  width: 700px;
+}
+
+.invite-img {
+  width: 700px;
 }
 
 .get-started-btn {
@@ -290,7 +295,7 @@ h1, h2 {
   margin-bottom: 20px;
 }
 
-.milestones-container {
+.milestones-container { 
   display: block;
   margin-left: -30px;
 }
@@ -302,4 +307,5 @@ h5, h3, p {
 .green-alert {
   background-color: #C5E384;
   color: #204620;
+  width: 40%;
 }
