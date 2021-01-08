@@ -35,7 +35,8 @@ router.post('/signup', (req, res, next) => {
             });
         })
         .then(userFromDB => {
-            res.redirect('/login');
+            req.session.currentUser = userFromDB;
+            res.redirect('/userProfile');
         })
         .catch(error => {
             if (error instanceof mongoose.Error.ValidationError) {
