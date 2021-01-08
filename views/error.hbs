@@ -1,14 +1,23 @@
 {{#if errorMessage}}
-  <p>{{errorMessage}}</p>
-  <a href='/challenges/{{this.challengeId}}'>Try again</a>
+  <h3 class="text-center">Oops, something has gone wrong!</h3>
+  <p class="text-center">{{errorMessage}}</p>
+  <div class="text-center">
+    <a href='/challenges/{{this.challengeId}}' class="challenges-btn">Try again</a>
+  </div>
 {{else}}
   {{#if errorMessageCreation}}
-    <p>{{errorMessageCreation}}</p>
-    <a href='/challenges/new'>Try again</a>
+    <h3 class="text-center">Oops, something has gone wrong!</h3>
+    <p class="text-center">{{errorMessageCreation}}</p>
+    <div class="text-center">
+      <a href='/challenges/new' class="challenges-btn">Try again</a>
+    </div>
   {{else}}
     {{#if errorMessageJoin}}
-      <p>{{errorMessageJoin}}</p>
-      <a href='/explore'>Try again</a>
+      <h3 class="text-center">Oops, something has gone wrong!</h3>
+      <p class="text-center">{{errorMessageJoin}}</p>
+      <div class="text-center">
+        <a href='/explore' class="challenges-btn">Try again</a>
+      </div>
     {{else}}
       <h1>Error!</h1>
       <h2>There was an error on the server! Check the console!</h2>

@@ -2,7 +2,6 @@ const nodemailer = require('nodemailer');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = require('../models/User.model');
 const templates = require('../templates/template');
 
 router.post('/send-email', (req, res, next) => {
