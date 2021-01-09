@@ -81,9 +81,17 @@ router.get('/:challengeId', (req, res, next) => {
       progressPct = '0%';
     }
 
+    let completedChallenge;
+    if(progressPct == '100%') {
+        completedChallenge = true;
+    } else {
+        completedChallenge = false;
+    }
+
     let daysLeftAndProgressObj = {
       daysLeft: days,
-      progressPercent: progressPct
+      progressPercent: progressPct,
+      challengeCompletion: completedChallenge
     };
 
     Challenge.findByIdAndUpdate(req.params.challengeId, {$set: daysLeftAndProgressObj}, {new: true})

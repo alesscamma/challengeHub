@@ -313,3 +313,11 @@ h5, h3, p {
 label {
   color: #204620;
 }
+
+.completed {
+  color: white;
+  font-size: 0.75em;
+  background-color: #EB1515;
+  padding: 5px 5px;
+  border-radius: 8px;
+}

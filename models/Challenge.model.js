@@ -46,6 +46,9 @@ const challengeSchema = new Schema({
     },
     progressPercent: {
       type: String
+    },
+    challengeCompletion: {
+      type: Boolean
     }
   },
     {
