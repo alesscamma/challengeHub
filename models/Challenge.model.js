@@ -35,9 +35,6 @@ const challengeSchema = new Schema({
       name: String,
       status: {type: Boolean, default: false}
     }, {_id: false})],
-    progress: {
-      type: Number
-    },
     resources: {
       type: String
     },

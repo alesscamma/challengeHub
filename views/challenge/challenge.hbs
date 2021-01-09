@@ -32,7 +32,6 @@
                 <ol class="milestones-list">
                     {{#each challenge.milestonesForDB}}
                     <label class="checkbox-container select-container milestones-container">{{this.name}}
-                        {{!-- <li>{{this.name}}</li> --}}
                         <input type="checkbox" name="milestone[]" value="{{this.name}}" {{#if this.status}} checked {{/if}}>
                         <span class="checkmark"></span>
                     </label>
