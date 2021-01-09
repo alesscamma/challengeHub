@@ -309,3 +309,7 @@ h5, h3, p {
   color: #204620;
   width: 40%;
 }
+
+label {
+  color: #204620;
+}
