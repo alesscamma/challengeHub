@@ -50,7 +50,7 @@ router.get('/:challengeId', (req, res, next) => {
     let today= new Date(); 
     
     const startDate = new Date(challenge.startDate);
-    const endDate = addDays(challenge.startDate, duration(format, timeNumb));
+    //const endDate = addDays(challenge.startDate, duration(format, timeNumb));
     
     let checkDate = (startDate, today, endDate) => {
       const oneDay = 24 * 60 * 60 * 1000;
