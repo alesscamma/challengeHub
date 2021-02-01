@@ -21,7 +21,9 @@ _*Your challenge page*_
 
 Illustrations by Matheus (source: http://www.glazestock.com)
 ## Usage
-To sign up and check out this awesome platform go to: https://challenge-hub.herokuapp.com/
+Fork, clone and run 'npm start'
+
+For deployed verion - to sign up and check out this awesome platform go to: https://challenge-hub.herokuapp.com/
 
 ## Support
 For any issues please contact getchallenged42@gmail.com
