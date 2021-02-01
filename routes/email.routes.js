@@ -18,7 +18,7 @@ router.post('/invite-friends', (req, res, next) => {
     service: 'gmail', 
     auth: { 
       user: 'getchallenged42@gmail.com', 
-      pass: EMAILPW    }
+      pass: process.env.EMAILPW    }
   });
 
   transporter.sendMail({
