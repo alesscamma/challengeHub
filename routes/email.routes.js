@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const templates = require('../templates/template');
+var dotenv = require('dotenv');
 
 router.get('/invite-friends', (req, res, next) => {
   const userInSession = req.session.currentUser;
@@ -17,8 +18,7 @@ router.post('/invite-friends', (req, res, next) => {
     service: 'gmail', 
     auth: { 
       user: 'getchallenged42@gmail.com', 
-      pass: 'Challengeapp!'
-    }
+      pass: EMAILPW    }
   });
 
   transporter.sendMail({
